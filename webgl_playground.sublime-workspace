@@ -1,0 +1,1752 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"resi",
+				"resize(InputArray src, OutputArray dst, Size dsize)	void"
+			],
+			[
+				"copy",
+				"copyTo(OutputArray m) const	void"
+			],
+			[
+				"input",
+				"input_image_gray	cv::Mat"
+			],
+			[
+				"file",
+				"file_loc	std::string"
+			],
+			[
+				"load",
+				"load_bow(const std::string &fname, std::vector<std::pair<uint32_t, float> > &data)	bool"
+			],
+			[
+				"lo",
+				"load_bow(const std::string &fname, std::vector<std::pair<uint32_t, float> > &data)	bool"
+			],
+			[
+				"arg",
+				"argv	char *[]"
+			],
+			[
+				"rea",
+				"read(std::string infile)	void"
+			],
+			[
+				"back",
+				"back_inserter(_Container &__x)	back_insert_iterator<_Container>"
+			],
+			[
+				"id_",
+				"id_clip_table	std::map<uint32_t, std::string>"
+			],
+			[
+				"vide",
+				"vid_file	std::string"
+			],
+			[
+				"Vide",
+				"VideoCapture	class"
+			],
+			[
+				"end",
+				"end_id	uint64_t"
+			],
+			[
+				"start",
+				"start_id	uint64_t"
+			],
+			[
+				"loa",
+				"load_rmap(const std::string &filename)	std::map<video::Frame, uint64_t>"
+			],
+			[
+				"clip",
+				"clip_string	std::string"
+			],
+			[
+				"vid",
+				"vid_file	std::string"
+			],
+			[
+				"fea",
+				"feature_count	std::vector<uint32_t>"
+			],
+			[
+				"loc",
+				"location	std::string"
+			],
+			[
+				"see",
+				"seekg(off_type, ios_base::seekdir)	__istream_type &"
+			],
+			[
+				"seekg",
+				"seekg(off_type, ios_base::seekdir)	__istream_type &"
+			],
+			[
+				"num",
+				"num_matches	std::vector<uint32_t>"
+			],
+			[
+				"read",
+				"read_old(std::string infile)	void"
+			],
+			[
+				"frame",
+				"frame_id"
+			],
+			[
+				"set_",
+				"set_frameid"
+			],
+			[
+				"mxCreateD",
+				"mxCreateDoubleMatrix(mwSize m, mwSize n, mxComplexity flag)	mxArray *"
+			],
+			[
+				"m",
+				"mini_graph_loc"
+			],
+			[
+				"cri",
+				"critical_scores_avg	std::vector< std::pair<float, uint32_t> >"
+			],
+			[
+				"idx",
+				"idxs_j	std::vector<uint32_t>"
+			],
+			[
+				"mini",
+				"mini_graph_loc	std::string"
+			],
+			[
+				"cluster",
+				"cluster_files	std::vector<std::string>"
+			],
+			[
+				"segmen",
+				"segment_sort	std::vector<std::pair<float, int32_t> >"
+			],
+			[
+				"segment",
+				"segment_assigment	std::vector<int32_t>"
+			],
+			[
+				"segments",
+				"segments_to_add	std::vector<int32_t>"
+			],
+			[
+				"segm",
+				"segment_assigment	std::vector<int32_t>"
+			],
+			[
+				"seg",
+				"segment	struct"
+			],
+			[
+				"webc",
+				"webcam	std::vector<int32_t>"
+			],
+			[
+				"webcam",
+				"webcam_segments	std::set<int32_t>"
+			],
+			[
+				"webca",
+				"webcam_segments	std::set<int32_t>"
+			],
+			[
+				"min",
+				"min_segment_length	const int32_t"
+			],
+			[
+				"criti",
+				"critical_threshold	const float"
+			],
+			[
+				"enco",
+				"encodeds"
+			],
+			[
+				"score",
+				"score_data"
+			],
+			[
+				"cir",
+				"critical_scores	std::vector< float >"
+			],
+			[
+				"crit",
+				"critical_scores	std::vector< float >"
+			],
+			[
+				"union",
+				"set_union(_IIter1, _IIter1, _IIter2, _IIter2, _OIter)	_OIter"
+			],
+			[
+				"toa",
+				"to_add	std::vector<int32_t>"
+			],
+			[
+				"critica",
+				"critical_clusters	std::vector< std::set<int32_t> >"
+			],
+			[
+				"g",
+				"getline(char_type *__s, streamsize __n)	__istream_type &"
+			],
+			[
+				"I",
+				"idFrameTableLocation	const std::string"
+			],
+			[
+				"Id",
+				"Id_Frame_Table	struct"
+			],
+			[
+				"uint",
+				"uint64_t	typedef"
+			],
+			[
+				"sco",
+				"score	float"
+			],
+			[
+				"clic",
+				"clickX"
+			],
+			[
+				"onmouse",
+				"onmousemove	Attr"
+			],
+			[
+				"clus",
+				"clusterTrajectories	std::map<uint32_t, std::vector<uint32_t> >"
+			],
+			[
+				"clust",
+				"clusterTrajectories	std::map<uint32_t, std::vector<uint32_t> >"
+			],
+			[
+				"clu",
+				"cluster	uint32_t"
+			],
+			[
+				"eq",
+				"eq	Equation"
+			],
+			[
+				"cla",
+				"class_name"
+			],
+			[
+				"mxCreateDoub",
+				"mxCreateDoubleMatrix(mwSize m, mwSize n, mxComplexity flag)	mxArray *"
+			],
+			[
+				"comp",
+				"component_idx	uint32_t"
+			],
+			[
+				"id",
+				"id_clip_table	std::map<uint64_t, video::Frame> id_frame_table			= Id_Frame_Table::load_fmap(config::idFrameTableLocation); 		// id ->"
+			],
+			[
+				"mxCreateDou",
+				"mxCreateDoubleMatrix(mwSize m, mwSize n, mxComplexity flag)	mxArray *"
+			],
+			[
+				"ad",
+				"adj	std::map<uint32_t, std::map<uint32_t, float> >"
+			],
+			[
+				"cl",
+				"close()	void"
+			],
+			[
+				"c",
+				"c_str() const	const char *"
+			],
+			[
+				"mw",
+				"mwSize	typedef"
+			],
+			[
+				"thum",
+				"thumbnail"
+			],
+			[
+				"add",
+				"addChartCursor"
+			],
+			[
+				"mappin",
+				"mapping_dim	const mwSize *"
+			],
+			[
+				"nei",
+				"neighbor_frames_vec	std::vector<uint32_t > >"
+			],
+			[
+				"neig",
+				"neighbor_counts	std::map<uint32_t, uint32_t>"
+			],
+			[
+				"ui",
+				"uint32_t	typedef"
+			],
+			[
+				"key",
+				"key_frame	int32_t"
+			],
+			[
+				"uint64",
+				"uint64_t	typedef"
+			],
+			[
+				"wr",
+				"write_metis(const std::string &outfile, std::map<uint64_t, video::Frame> &id_frame_table)	void"
+			],
+			[
+				"ist",
+				"istringstream	typedef"
+			],
+			[
+				"numer",
+				"num_erased	uint32_t"
+			],
+			[
+				"vtx",
+				"vtx_vis	std::map<uint32_t, bool>"
+			],
+			[
+				"int",
+				"int64_t	typedef"
+			],
+			[
+				"res",
+				"resize(size_type __new_size)	void"
+			],
+			[
+				"s",
+				"size() const	size_type"
+			],
+			[
+				"clip_",
+				"clip_neighborcount	std::map<uint32_t, std::vector<uint64_t> >"
+			],
+			[
+				"mxCreateCe",
+				"mxCreateCellArray(mwSize ndim, const mwSize *dims)	mxArray *"
+			],
+			[
+				"wri",
+				"write_metis(const std::string &outfile)	void"
+			],
+			[
+				"posi",
+				"positiveGraphFileLocation	std::string"
+			],
+			[
+				"num_no",
+				"num_verts() const	uint64_t"
+			],
+			[
+				"num_c",
+				"num_correct	double"
+			],
+			[
+				"rgb",
+				"rgb_string	std::stringstream"
+			],
+			[
+				"hsv",
+				"hsv_color	hsv"
+			],
+			[
+				"cur",
+				"cur_future	size_t"
+			],
+			[
+				"label",
+				"label_stream	std::stringstream"
+			],
+			[
+				"get",
+				"get_time(uint64_t fid, std::map<uint64_t, video::Frame> &id_frame_table, std::map<uint32_t, std::string> &id_clip_table)	utils::filesystem::Time"
+			],
+			[
+				"string",
+				"stringstream	typedef"
+			],
+			[
+				"unique",
+				"uniqueClusters	std::map<uint32_t, uint32_t>"
+			],
+			[
+				"compon",
+				"components	std::vector<std::pair<uint32_t, uint32_t> >"
+			],
+			[
+				"uni",
+				"unique_futures	std::map<uint32_t, std::vector<uint32_t> >"
+			],
+			[
+				"clips",
+				"clip_sequences_id	std::map<uint32_t, std::vector<uint64_t> >"
+			],
+			[
+				"star",
+				"start_index	int32_t"
+			],
+			[
+				"clip_seq",
+				"clip_sequences_full	std::map<uint32_t, std::vector<uint32_t> >"
+			],
+			[
+				"bif",
+				"_bifurcations	std::map<uint32_t, std::map<uint32_t, std::set<uint32_t> > >"
+			],
+			[
+				"compo",
+				"components	std::vector<std::pair<uint32_t, uint32_t> >"
+			],
+			[
+				"bifu",
+				"bifurcations_clusters	std::map<uint32_t, std::map<uint32_t, std::set<uint32_t> > >"
+			],
+			[
+				"bi",
+				"bifurcations_clusters	std::map<uint32_t, std::map<uint32_t, std::set<uint32_t> > >"
+			],
+			[
+				"uniq",
+				"unique_futures	const std::map<uint32_t, std::vector<uint32_t> > &"
+			],
+			[
+				"fram",
+				"frame_id	uint64_t"
+			],
+			[
+				"mxGetsS",
+				"mxGetScalar(const mxArray *pa)	double"
+			],
+			[
+				"sor",
+				"sort(_RAIter, _RAIter)	void"
+			],
+			[
+				"id_p",
+				"id_pairs_scores	double *"
+			],
+			[
+				"mxGetDim",
+				"mxGetDimensions(const mxArray *pa)	const mwSize *"
+			],
+			[
+				"cop",
+				"copyMakeBorder(InputArray src, OutputArray dst, int top, int bottom, int left, int right, int borderType)	void"
+			],
+			[
+				"op",
+				"open(const cv::String &filename)	bool"
+			],
+			[
+				"int32",
+				"int32_t	typedef"
+			],
+			[
+				"clip_ke",
+				"clip_keyframe_counts	std::map<uint32_t, uint32_t>"
+			],
+			[
+				"beg",
+				"begin()	iterator"
+			],
+			[
+				"f",
+				"forv	Vector For Loop"
+			],
+			[
+				"uinqe",
+				"uniqueClusters	std::map<uint32_t, uint32_t>"
+			],
+			[
+				"componen",
+				"component_count	std::map<uint32_t, uint32_t>"
+			],
+			[
+				"unq",
+				"uniqueClusters	std::map<uint32_t, uint32_t>"
+			],
+			[
+				"mex",
+				"mexa64"
+			],
+			[
+				"adj",
+				"adjacencyMatrix	const std::vector< std::vector<float> > &"
+			],
+			[
+				"un",
+				"unique_futures	std::map<uint32_t, std::vector<uint32_t> >"
+			],
+			[
+				"nu",
+				"num_components	uint64_t"
+			],
+			[
+				"trans",
+				"transitionMatrix	std::vector<uint32_t>"
+			],
+			[
+				"tran",
+				"transitionMatrix	std::vector<uint32_t>"
+			],
+			[
+				"max",
+				"maxIndex	uint32_t"
+			],
+			[
+				"transition",
+				"transitionMatrix	std::vector< std::vector<uint32_t> >"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "code/core/canvas.js",
+			"settings":
+			{
+				"buffer_size": 441,
+				"line_ending": "Unix",
+				"name": "var gl; // A global variable for the WebGL context"
+			}
+		},
+		{
+			"contents": "<html>\n<head>\n<script type=\"text/javascript\"></script>\n</head>\n<body onload=\"start()\">\n  <canvas id=\"glcanvas\" width=\"640\" height=\"480\">\n    Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.\n  </canvas>\n</body>\n</html>",
+			"file": "code/experiments/simple/index.html",
+			"file_size": 256,
+			"file_write_time": 130462142015720972,
+			"settings":
+			{
+				"buffer_size": 254,
+				"line_ending": "Unix",
+				"name": "<body onload=\"start()\">"
+			}
+		},
+		{
+			"file": "code/3rdparty/jslog.js",
+			"settings":
+			{
+				"buffer_size": 8598,
+				"line_ending": "Unix",
+				"name": "LOG JavaScript Logging Library"
+			}
+		}
+	],
+	"build_system": "Packages/User/pcam.sublime-build",
+	"command_palette":
+	{
+		"height": 378.0,
+		"selected_items":
+		[
+			[
+				"bro",
+				"SFTP: Browse Server…"
+			],
+			[
+				"brow",
+				"SFTP: Browse Server…"
+			],
+			[
+				"la",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"repo",
+				"Package Control: Add Repository"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"prefer",
+				"Preferences: LaTeXing Settings - Default"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"men",
+				"View: Toggle Menu"
+			],
+			[
+				"server",
+				"SFTP: Setup Server…"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"sftp",
+				"SFTP: Browse Server…"
+			],
+			[
+				"togg",
+				"View: Toggle Menu"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remote",
+				"SFTP: Browse Remote…"
+			],
+			[
+				"browse",
+				"SFTP: Browse Server…"
+			],
+			[
+				"sft",
+				"SFTP: Edit Server…"
+			],
+			[
+				"br",
+				"SFTP: Browse Remote…"
+			],
+			[
+				"upda",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"pack",
+				"Package Control: Upgrade Package"
+			]
+		],
+		"width": 457.0
+	},
+	"console":
+	{
+		"height": 133.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"sublime.packages_path()"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/psastras/depth.cxx",
+		"/home/psastras/test.cpp",
+		"/home/psastras/Desktop/graph.cxx",
+		"/tmp/sublime-sftp-browse-1398191082/muir/usr4/psastras/memex/memex/modules/tools/compare_bow.cxx",
+		"/home/psastras/paulcam/memex/modules/matlab/preview_frame_ids_2.m",
+		"/tmp/sublime-sftp-browse-1398192007/muir/usr4/psastras/memex/memex/modules/tools/triangle_matches.cxx",
+		"/tmp/sublime-sftp-browse-1398192123/muir/usr4/psastras/memex/memex/modules/core/utils.hpp",
+		"/tmp/sublime-sftp-browse-1398192724/muir/usr4/psastras/memex/memex/modules/core/utils.cxx",
+		"/tmp/sublime-sftp-browse-1398191990/muir/usr4/psastras/memex/memex/modules/tools/triangle_matches.cxx",
+		"/home/psastras/.config/sublime-text-3/Packages/User/sftp_servers/muir",
+		"/tmp/sublime-sftp-browse-1398125142/warp/home/psastras/run_scripts/verify_edges.sh",
+		"/tmp/sublime-sftp-browse-1398124668/warp/home/psastras/paulcam/memex/modules/core/utils.hpp",
+		"/tmp/sublime-sftp-browse-1398124620/warp/home/psastras/paulcam/memex/modules/core/utils.cxx",
+		"/home/psastras/xetex.def",
+		"/home/psastras/test.tex",
+		"/home/psastras/testdir/run.py",
+		"/home/psastras/run.py",
+		"/home/psastras/test_script.py",
+		"/tmp/sublime-sftp-browse-1398124761/warp/home/psastras/paulcam/memex/modules/tools/compute_matches.cxx",
+		"/tmp/sublime-sftp-browse-1398124841/warp/home/psastras/paulcam/memex/modules/core/config.hpp",
+		"/tmp/sublime-sftp-browse-1398124553/warp/home/psastras/paulcam/memex/modules/core/utils.cxx",
+		"/home/psastras/test.lyx",
+		"/home/psastras/paulcam/mex/debug_sift.cpp",
+		"/home/psastras/paulcam/mex/debug_sift_2.cpp",
+		"/home/psastras/paulcam/tables/recompute_files.cpp",
+		"/home/psastras/paulcam/tools/sift/sift.cpp",
+		"/home/psastras/pcampaper/redundancy.tex",
+		"/home/psastras/pcampaper/pcam.tex",
+		"/home/psastras/pcampaper/application.tex",
+		"/home/psastras/paulcam/memex/build/clipinfo.txt",
+		"/home/psastras/pcampaper/pcampaper",
+		"/home/psastras/pcampaper/conclusions.tex",
+		"/home/psastras/pcampaper/Makefile",
+		"/home/psastras/pcampaper/redudancy.lyx",
+		"/home/psastras/.config/sublime-text-3/Packages/User/CommandOnSave.sublime-settings",
+		"/home/psastras/pcampaper/common.mk",
+		"/home/psastras/.config/sublime-text-3/Packages/SublimeOnSaveBuild/SublimeOnSaveBuild.sublime-settings",
+		"/home/psastras/.config/sublime-text-3/Packages/User/pcam.sublime-build",
+		"/home/psastras/.config/sublime-text-3/Packages/User/Distraction Free.sublime-settings",
+		"/home/psastras/pcampaper/application.lyx",
+		"/home/psastras/pcampaper/abstract.lyx",
+		"/home/psastras/paulcam/memex/modules/tools/count_newdata.cxx",
+		"/home/psastras/paulcam/memex/modules/tools/mini_graph.hpp",
+		"/home/psastras/paulcam/memex/modules/core/graph.hpp",
+		"/home/psastras/pcampaper/intro.tex",
+		"/home/psastras/pcampaper/memex.tex",
+		"/home/psastras/pcampaper/psastras.lyx",
+		"/home/psastras/.config/sublime-text-3/Packages/LaTeXing/LaTeXing.sublime-settings",
+		"/home/psastras/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/psastras/paulcam/memex/l1magic/tvdantzig_example.m",
+		"/home/psastras/paulcam/memex/modules/matlab/vlfeat/docsrc/dtd/xhtml1/xhtml-lat1.ent",
+		"/home/psastras/paulcam/memex/modules/memex/soft_link_apart.cxx",
+		"/home/psastras/paulcam/memex/l1magic/l1dantzig_example.m",
+		"/home/psastras/pcampaper/redudancy.tex",
+		"/home/psastras/pcampaper/psastras.tex",
+		"/home/psastras/.cache/.fr-Mg7oVX/latest_stat/dataset_stats.txt",
+		"/home/psastras/paulcam/memex/modules/tools/convertGraph.cxx",
+		"/home/psastras/paulcam/memex/modules/experimental/metis_cluster.cxx",
+		"/home/psastras/paulcam/memex/modules/core/graph.cxx",
+		"/home/psastras/paulcam/memex/CMakeLists.txt",
+		"/home/psastras/pcampaper/cvpr.sty",
+		"/home/psastras/.cache/.fr-MnThhW/cvpr2013AuthorKit/latex/README.txt",
+		"/home/psastras/paulcam/memex/modules/tools/count_features.cxx",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/src/graphlab/util/counting_queue.hpp",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/src/graphlab/util/task_count_termination.hpp",
+		"/home/psastras/paulcam/memex/modules/matlab/mex/hmm/compute_transition_matrix.cpp",
+		"/home/psastras/paulcam/memex/scripts/commonUtils.py",
+		"/home/psastras/paulcam/memex/modules/matlab/ncut.m",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/src/graphlab/util/net_util.hpp",
+		"/home/psastras/paulcam/memex/modules/tools/ff_video.cxx",
+		"/home/psastras/paulcam/memex/modules/tools/webcam.cxx",
+		"/home/psastras/paulcam/memex/modules/tools/CMakeLists.txt",
+		"/home/psastras/paulcam/memex/modules/core/utils.cxx",
+		"/home/psastras/paulcam/memex/modules/core/utils.hpp",
+		"/home/psastras/paulcam/memex/modules/tools/stats.cxx",
+		"/home/psastras/paulcam/memex/modules/matlab/matlab/edit_distances/example.m",
+		"/home/psastras/paulcam/memex/align.py",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/release/tests/anytests_loader",
+		"/home/psastras/paulcam/memex/modules/tools/clip_time.cxx",
+		"/home/psastras/Desktop/maple17.desktop",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/tests/thread_tools.cxx",
+		"/home/psastras/paulcam/memex/modules/matlab/temporal_only.m",
+		"/home/psastras/paulcam/memex/modules/core/tables.hpp",
+		"/home/psastras/.config/sublime-text-3/Packages/User/sftp_servers/ladoga_code.cfg",
+		"/home/psastras/paulcam/memex/modules/features/common_old.hpp",
+		"/home/psastras/Downloads/10.1007%2Fs00365-007-9003-x.txt",
+		"/home/psastras/Downloads/10.1007%2Fs00365-007-9003-x (1).bib",
+		"/home/psastras/Downloads/alignment-1.0.9/alignment/sequence.py",
+		"/home/psastras/Desktop/align.seq",
+		"/home/psastras/paulcam/.gitignore",
+		"/home/psastras/paulcam/memex/modules/vis/fps/index.html",
+		"/home/psastras/paulcam/memex/modules/matlab/mex/spectral/bifurcationPrediction.cpp",
+		"/home/psastras/paulcam/memex/modules/tools/refineClusters.cxx",
+		"/home/psastras/paulcam/memex/modules/tools/clusterAllSegments.cxx",
+		"/home/psastras/cs.bib",
+		"/home/psastras/Downloads/sparse_in_frequency.m",
+		"/home/psastras/paulcam/memex/modules/matlab/matlab/spectral/spectralclustering-1.1/sclust.m",
+		"/home/psastras/im0.eps",
+		"/home/psastras/cs.lyx",
+		"/home/psastras/Downloads/10.1007%2Fs00365-007-9003-x.bib",
+		"/home/psastras/.cache/.fr-vIe5IW/Cleves_Corner_Compressed_Sensing.m",
+		"/home/psastras/fancyslides.cls",
+		"/home/psastras/paulcam/memex/modules/matlab/mex/spectral/previewClustersGraph.cpp",
+		"/home/psastras/paulcam/memex/modules/tools/extract_subgraph_mini.cxx",
+		"/home/psastras/paulcam/memex/modules/matlab/construct_linear_eqs.m",
+		"/home/psastras/paulcam/memex/modules/CMakeLists.txt",
+		"/home/psastras/paulcam/memex/modules/matlab/vlfeat/toolbox/demo/vl_demo_sift_vs_ubc.m",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/demoapps/pgibbs/factorized_model.hpp",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/src/graphlab/matlab/mex_options_struct.h",
+		"/home/psastras/paulcam/memex/3rdparty/graphlabapi_v1_2145/tests/mmap_allocator_test.cxx",
+		"/home/psastras/paulcam/memex/modules/matlab/matlab.mat",
+		"/tmp/sublime-sftp-browse-1394736001/dolores.cfg/home/psastras/web/working.html",
+		"/home/psastras/Desktop/graph.js",
+		"/home/psastras/Desktop/bifurcations.dot",
+		"/home/psastras/paulcam/memex/modules/tools/graph.js",
+		"/home/psastras/Desktop/graph.html",
+		"/home/psastras/paulcam/memex/modules/matlab/mex/utility/read_bow.cpp",
+		"/home/psastras/paulcam/memex/modules/tools/computeIdf.cxx",
+		"/home/psastras/paulcam/memex/modules/tools/test.html",
+		"/home/psastras/Downloads/alignment-1.0.9/examples/sequencealignment.py",
+		"/home/psastras/paulcam/memex/modules/matlab/refine_clusters.m",
+		"/home/psastras/paulcam/memex/modules/matlab/mex/spectral/previewClustersWeb.cpp",
+		"/home/psastras/paulcam/memex/modules/tools/clusterSegment.cxx",
+		"/home/psastras/Desktop/code/function[s] = img_path_remote(fid, frames, clips)",
+		"/home/psastras/Desktop/code/read_binary_vector32f.m",
+		"/home/psastras/Desktop/code/read_binary_vector32u.m",
+		"/home/psastras/Desktop/code/function preview_frame_ids_2.m",
+		"/home/psastras/paulcam/memex/modules/tools/test.seq"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"figures/",
+			"the dat",
+			"indivi",
+			"small",
+			"0.16",
+			"0.164",
+			"Most Comm",
+			"seque",
+			"auto",
+			"causing more",
+			"to one",
+			"highly",
+			"connecte",
+			"write_vector",
+			"\\begin{figure}",
+			"eps",
+			"\\lyxframeend",
+			"\\lyxfra",
+			"What is",
+			"Match_",
+			"Mat",
+			"mp4",
+			"\\n",
+			" 3",
+			" 2",
+			" 1",
+			"video::Frame",
+			"compute_webc",
+			"segment_assi",
+			"critical_new",
+			"conne",
+			"connet",
+			"write_",
+			"critical_scores_init",
+			"write_ve",
+			"GAP_ELEMENT",
+			"align",
+			",",
+			"],\\[",
+			"],[",
+			"     ",
+			"\\n",
+			",",
+			"'",
+			"<svg.*width=\"(\\d+)pt\".*height=\"(\\d+)pt\".*>",
+			"<svg.*width=\"(\\d+)pt\".*height=(\\d+).*/>",
+			"write_vect",
+			"uint32",
+			"#ff00ff",
+			"html",
+			"chart_0",
+			"\\n",
+			"'",
+			" 	",
+			"\\n",
+			"   ",
+			"    ",
+			"\\n",
+			"style",
+			"ctx.putImageData(theImage,0,0);",
+			"\"",
+			"\\t",
+			"\\n",
+			"tables",
+			"onclick='javascript:alert(this.class);' ",
+			"javascript:alert(this.class);",
+			"onclick='javascript:alert(this.class);'",
+			"component",
+			"150",
+			"for",
+			"probabil",
+			"size: 1",
+			"g_",
+			"#00ff",
+			"width",
+			"  ",
+			"    ",
+			"     ",
+			"      ",
+			"       ",
+			"        ",
+			"         ",
+			"          ",
+			"           ",
+			"\\t",
+			"\\n",
+			"thumb",
+			"compute_eigs",
+			"compute_",
+			":.*\\n",
+			"\\n",
+			".*:",
+			":",
+			" << std::endl",
+			"<< std::endl",
+			"JS chart by amCharts",
+			"\".*by amCharts\"",
+			"by am",
+			"skip",
+			"key_fram",
+			"ofs << std::endl << \"] }\";\n		ofs << std::endl << \"var line_\" << it->first  << \" =  new Chart(document.getElementById('\" << it->first << \"').getContext('2d')).Line(line_data_\" << it->first  << \");\";\n		ofs << std::endl << \"</script>\";",
+			"connected_",
+			"frame_id",
+			"graph_",
+			"connected_compon",
+			"cluster",
+			"frame_id",
+			"int64_t",
+			"id_fra",
+			"auto",
+			"cout",
+			"add_tem",
+			"uint64_t",
+			"id_frame",
+			"it",
+			"matlab",
+			"gaussianKernel_1D",
+			"detect_",
+			"start_c",
+			"clusters[frame",
+			"-128",
+			"-129",
+			"write_metis",
+			"nodes",
+			"add_edge",
+			"read(",
+			"num_verts()",
+			"num_verts"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\\figureprefix/",
+			"\\figureprefix",
+			"large",
+			"0.33",
+			"0.16",
+			"",
+			" ",
+			"\\n",
+			"",
+			" ",
+			",\\n",
+			"''",
+			"int32",
+			" \"",
+			" ",
+			"",
+			"'",
+			"",
+			"cluster",
+			"size: 0.1",
+			", ",
+			"  ",
+			" ",
+			"; ... \\n",
+			";",
+			", ",
+			"\\n",
+			"",
+			"component",
+			"clusterAssignments[z]",
+			"",
+			"\\\"",
+			"\\\\",
+			"\\\"",
+			"'",
+			"std::cout",
+			", ",
+			" http://ladoga.graphics.cs.cmu.edu/psastras/",
+			" http://ladoga.graphics.cs.cmu.edu/psastras/exploded/",
+			" ",
+			"/run/media/psastras/cheddar/data/exploded/",
+			"http://ladoga.graphics.cs.cmu.edu/psastras/",
+			"/run/media/psastras/cheddar/data/",
+			"http://ladoga.graphics.cs.cmu.edu/psastras/",
+			"breadth",
+			"depth",
+			"http://ladoga.graphics.cs.cmu.edu/psastras/exploded/",
+			"'",
+			".mp4 /afs/cs.cmu.edu/user/psastras/ladoga/web/vis/video/",
+			"\\\"",
+			"\"",
+			"Bigtable",
+			"LERROR",
+			"utils::filesystem::file_exists",
+			"LDEBUG",
+			"LINFO",
+			" 0",
+			" ",
+			"",
+			"CV_32FC3",
+			"LOG(DEBUG)",
+			"LOG(INFO)",
+			"",
+			"MAX",
+			"MIN",
+			"MAX",
+			"min",
+			"/home/",
+			"",
+			"adjCTX",
+			"/home/psastras/",
+			"/nfs/ladoga_no_backups/users/psastras/paulcam",
+			"/home/psastras/paulcam",
+			"/home/psastras/paulcam/",
+			"/run/media/psastras/cheddar/",
+			"/home/psastras/paulcam/data/",
+			"bowScore",
+			"CompareDataFunc",
+			" cv::Mat",
+			"cv::Mat",
+			"BOWMatcher"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "code/core/canvas.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 441,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								219
+							]
+						],
+						"settings":
+						{
+							"auto_name": "var gl; // A global variable for the WebGL context",
+							"incomplete_sync": null,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "code/experiments/simple/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								199,
+								199
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<body onload=\"start()\">",
+							"incomplete_sync": null,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "code/3rdparty/jslog.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8394,
+								8394
+							]
+						],
+						"settings":
+						{
+							"auto_name": "LOG JavaScript Logging Library",
+							"incomplete_sync": null,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5308.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 84.0
+	},
+	"output.exec":
+	{
+		"height": 108.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"project": "webgl_playground.sublime-project",
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"red",
+				"redundancy.tex"
+			],
+			[
+				"conc",
+				"conclusions.tex"
+			],
+			[
+				"app",
+				"application.tex"
+			],
+			[
+				"appl",
+				"application.lyx"
+			],
+			[
+				"minig",
+				"modules/tools/mini_graph.hpp"
+			],
+			[
+				"graph",
+				"modules/core/graph.hpp"
+			],
+			[
+				"cou",
+				"modules/tools/count_newdata.cxx"
+			],
+			[
+				"count_",
+				"modules/tools/count_newdata.cxx"
+			],
+			[
+				"ali",
+				"align.py"
+			],
+			[
+				"utils",
+				"modules/core/utils.hpp"
+			],
+			[
+				"cluster",
+				"modules/tools/clusterAllSegments.cxx"
+			],
+			[
+				"clustera",
+				"modules/tools/clusterAllSegments.cxx"
+			],
+			[
+				"refinec",
+				"modules/tools/refineClusters.cxx"
+			],
+			[
+				"clusterseg",
+				"modules/tools/clusterSegment.cxx"
+			],
+			[
+				"util",
+				"modules/core/utils.hpp"
+			],
+			[
+				"previewgraph",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"extra",
+				"modules/tools/extract_frame_graph.cxx"
+			],
+			[
+				"extra_s",
+				"modules/tools/extract_subgraph_mini.cxx"
+			],
+			[
+				"extract_",
+				"modules/tools/extract_subgraph_mini.cxx"
+			],
+			[
+				"preview",
+				"modules/matlab/mex/spectral/previewClustersGraph.cpp"
+			],
+			[
+				"ref",
+				"modules/tools/refineClusters.cxx"
+			],
+			[
+				"filmst",
+				"modules/matlab/mex/spectral/previewFilmstrips.cpp"
+			],
+			[
+				"refine",
+				"modules/tools/refineClusters.cxx"
+			],
+			[
+				"refin",
+				"modules/matlab/refine_clusters.m"
+			],
+			[
+				"mini_gra",
+				"modules/tools/mini_graph.hpp"
+			],
+			[
+				"cmak",
+				"CMakeLists.txt"
+			],
+			[
+				"utils.cxx",
+				"modules/core/utils.cxx"
+			],
+			[
+				"procesc",
+				"modules/tools/processCritical.cxx"
+			],
+			[
+				"bifurcationg",
+				"modules/matlab/mex/spectral/previewBifurcationGraph.cpp"
+			],
+			[
+				"reo",
+				"modules/tools/reoderSparseBin.cxx"
+			],
+			[
+				"extra_sub",
+				"modules/tools/extra_subgraph_mini_dense.cxx"
+			],
+			[
+				"extras",
+				"modules/tools/extra_subgraph_mini_dense.cxx"
+			],
+			[
+				"utils.",
+				"modules/core/utils.hpp"
+			],
+			[
+				"previewpredi",
+				"modules/matlab/mex/spectral/previewPredictability.cpp"
+			],
+			[
+				"previewbi",
+				"modules/matlab/mex/spectral/previewBifurcationGraph.cpp"
+			],
+			[
+				"conver",
+				"modules/tools/convertGraph.cxx"
+			],
+			[
+				"previewpr",
+				"modules/matlab/mex/spectral/previewPredictability.cpp"
+			],
+			[
+				"previewbifurcationgraph",
+				"modules/matlab/mex/spectral/previewBifurcationGraph.cpp"
+			],
+			[
+				"previewfil",
+				"modules/matlab/mex/spectral/previewFilmstrips.cpp"
+			],
+			[
+				"compute_tf",
+				"modules/matlab/mex/match/compute_tforms.cpp"
+			],
+			[
+				"cluster_se",
+				"modules/matlab/mex/hmm/cluster_sequences.cpp"
+			],
+			[
+				"read_pre",
+				"modules/matlab/mex/utility/read_prediction_scores.cpp"
+			],
+			[
+				"cmake",
+				"CMakeLists.txt"
+			],
+			[
+				"previewclustersd",
+				"modules/matlab/mex/spectral/previewClustersDual.cpp"
+			],
+			[
+				"previewclust",
+				"modules/matlab/mex/spectral/previewClustersWeb.cpp"
+			],
+			[
+				"previewcom",
+				"modules/matlab/mex/spectral/previewComponentsWeb.cpp"
+			],
+			[
+				"tables",
+				"modules/core/tables.hpp"
+			],
+			[
+				"confi",
+				"modules/core/config.hpp"
+			],
+			[
+				"conve",
+				"modules/tools/convertGraph.cxx"
+			],
+			[
+				"previewclu",
+				"modules/matlab/mex/spectral/previewClustersDual.cpp"
+			],
+			[
+				"previewcomp",
+				"modules/matlab/mex/spectral/previewComponentsWeb.cpp"
+			],
+			[
+				"previewcomponentsweb",
+				"modules/matlab/mex/spectral/previewComponentsWeb.cpp"
+			],
+			[
+				"conv",
+				"modules/tools/convertGraph.cxx"
+			],
+			[
+				"mini",
+				"modules/tools/mini_graph.hpp"
+			],
+			[
+				"mini_g",
+				"modules/tools/mini_graph.hpp"
+			],
+			[
+				"graph.c",
+				"modules/core/graph.cxx"
+			],
+			[
+				"prev",
+				"modules/matlab/mex/spectral/previewComponentsWeb.cpp"
+			],
+			[
+				"extr",
+				"modules/tools/extract_subgraph_mini.cxx"
+			],
+			[
+				"previewclustersdu",
+				"modules/matlab/mex/spectral/previewClustersDual.cpp"
+			],
+			[
+				"previewf",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"previewcompon",
+				"modules/matlab/mex/spectral/previewComponentsWeb.cpp"
+			],
+			[
+				"mini_",
+				"modules/tools/mini_graph.hpp"
+			],
+			[
+				"gra",
+				"modules/core/graph.cxx"
+			],
+			[
+				"clusters",
+				"modules/matlab/mex/spectral/previewClustersWeb.cpp"
+			],
+			[
+				"grap",
+				"modules/core/graph.hpp"
+			],
+			[
+				"previewclustersweb",
+				"modules/matlab/mex/spectral/previewClustersWeb.cpp"
+			],
+			[
+				"write",
+				"3rdparty/graphlabapi_v1_2145/src/graphlab/graph/write_only_disk_atom.cpp"
+			],
+			[
+				"grpah",
+				"modules/core/graph.hpp"
+			],
+			[
+				"previewgra",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"gr",
+				"modules/core/graph.hpp"
+			],
+			[
+				"ext",
+				"modules/tools/extract_frame_graph.cxx"
+			],
+			[
+				"",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"extrac",
+				"modules/tools/extract_frame_graph.cxx"
+			],
+			[
+				"previgrap",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"ful",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"full",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"reduc",
+				"modules/tools/reduce_graph.cxx"
+			],
+			[
+				"prevf",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"findop",
+				"cmake/FindOpenCV.cmake"
+			],
+			[
+				"ex",
+				"modules/tools/extract_frame_graph.cxx"
+			],
+			[
+				"full.",
+				"modules/matlab/mex/spectral/previewGraphFull.cpp"
+			],
+			[
+				"ut",
+				"modules/core/utils.cxx"
+			],
+			[
+				"uti",
+				"modules/core/utils.hpp"
+			],
+			[
+				"previewc",
+				"modules/matlab/mex/spectral/previewClustersWeb.cpp"
+			],
+			[
+				"metis",
+				"modules/experimental/metis_cluster.cxx"
+			],
+			[
+				"find",
+				"cmake/FindOpenCV.cmake"
+			],
+			[
+				"met",
+				"modules/experimental/metis_cluster.cxx"
+			],
+			[
+				"previewclustersw",
+				"modules/matlab/mex/spectral/previewClustersWeb.cpp"
+			],
+			[
+				"tab",
+				"modules/core/tables.hpp"
+			],
+			[
+				"cmakeli",
+				"CMakeLists.txt"
+			],
+			[
+				"crea",
+				"modules/vis/create_webcam.cxx"
+			],
+			[
+				"clus",
+				"modules/matlab/mex/spectral/previewClustersGraph.cpp"
+			],
+			[
+				"bench_all",
+				"modules/bench/bench_all.cxx"
+			],
+			[
+				"vocab_tree.",
+				"modules/search/vocab_tree/vocab_tree.cxx"
+			],
+			[
+				"dataset",
+				"modules/utils/dataset.cxx"
+			],
+			[
+				"data",
+				"modules/utils/dataset.hpp"
+			],
+			[
+				"geo",
+				"~/paulcam/mex/geo_verify.cpp"
+			],
+			[
+				"pr",
+				"scripts/pipeline-1/processAll.py"
+			],
+			[
+				"adj",
+				"tools/adjacency/adj.cpp"
+			],
+			[
+				"pag",
+				"tools/pages/pages.cpp"
+			],
+			[
+				"pro",
+				"scripts/pipeline-1/processAll.py"
+			],
+			[
+				"c",
+				"tools/graph/CMakeLists.txt"
+			],
+			[
+				"test",
+				"/home/psastras/Desktop/test.html"
+			],
+			[
+				"ad",
+				"tools/adjacency/adj.cpp"
+			],
+			[
+				"proces",
+				"scripts/pipeline-1/processAll.py"
+			],
+			[
+				"pages",
+				"tools/pages/pages.cpp"
+			],
+			[
+				"g",
+				"tools/graph/graph.cpp"
+			],
+			[
+				"mat",
+				"tools/pages/matcher.cpp"
+			],
+			[
+				"main",
+				"tools/graph/main.cpp"
+			],
+			[
+				"vide",
+				"scripts/pipeline-1/videoPipeline.py"
+			],
+			[
+				"proce",
+				"scripts/pipeline-1/processAll.py"
+			],
+			[
+				"paul",
+				"scripts/pipeline-1/paulcamDefines.py"
+			],
+			[
+				"sif",
+				"tools/sift/sift.cpp"
+			],
+			[
+				"matc",
+				"tools/graph/matcher.h"
+			],
+			[
+				"cm",
+				"tools/graph/CMakeLists.txt"
+			],
+			[
+				"cma",
+				"tools/CMakeLists.txt"
+			],
+			[
+				"math",
+				"tools/graph/matcher.h"
+			],
+			[
+				"pau",
+				"scripts/pipeline-1/paulcamDefines.py"
+			],
+			[
+				"proc",
+				"scripts/pipeline-1/processAll.py"
+			],
+			[
+				"bowm",
+				"tools/bow/matcher.cpp"
+			],
+			[
+				"bow",
+				"tools/bow/bow.cpp"
+			],
+			[
+				"merge",
+				"scripts/mergeVideo.py"
+			],
+			[
+				"clust",
+				"tools/cluster/cluster.cpp"
+			],
+			[
+				"da",
+				"tools/neighbors/database.cpp"
+			],
+			[
+				"dat",
+				"tools/neighbors/database.h"
+			],
+			[
+				"nei",
+				"tools/neighbors/neighbors.cpp"
+			],
+			[
+				"th",
+				"tools/thumbs/thumbs.cpp"
+			],
+			[
+				"thu",
+				"tools/thumbs/thumbs.cpp"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 251.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
