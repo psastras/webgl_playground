@@ -46,8 +46,20 @@ NotImplementedError.prototype = <span class="hljs-built_in">Error</span>.prototy
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h2 id="mat4x4">mat4x4</h2>
-<p>Defines a 4 x 4 matrix with common math operations</p>
+              <p>mat4x4</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Defines a 4 x 4 matrix with common math operations</p>
 
             </div>
             
@@ -61,11 +73,11 @@ mat4x4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Applies the input function to each element of the matrix and returns a reference to this matrix</p>
 
@@ -81,30 +93,13 @@ mat4x4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>Returns a new matrix equal to the transpose of the current matrix</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>	transposed : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"NotImplementedError"</span>, message : <span class="hljs-string">"todo"</span>};
-	},</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Returns a reference to the transposed version of the current matrix</p>
+              <p>Returns a new matrix equal to the transpose of the current matrix</p>
 
             </div>
             
@@ -120,6 +115,23 @@ mat4x4.prototype = {</pre></div></div>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Returns a reference to the transposed version of the current matrix</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	transposed : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"NotImplementedError"</span>, message : <span class="hljs-string">"todo"</span>};
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to an element by element sum of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the matrix summed with that scalar</p>
@@ -140,11 +152,11 @@ a scalar, returns a new matrix equal to the matrix summed with that scalar</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to an element by element difference of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the matrix minus the scalar</p>
@@ -165,11 +177,11 @@ a scalar, returns a new matrix equal to the matrix minus the scalar</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to the matrix multiplication of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the elmement wise matrix multiplication with the scalar</p>
@@ -187,11 +199,11 @@ a scalar, returns a new matrix equal to the elmement wise matrix multiplication 
         </li>
         
         
-        <li id="section-9">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Returns a new matrix equal to the elmement wise matrix division with the scalar</p>
 
@@ -207,11 +219,11 @@ a scalar, returns a new matrix equal to the elmement wise matrix multiplication 
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Returns the determinant of the matrix</p>
 
@@ -224,11 +236,11 @@ a scalar, returns a new matrix equal to the elmement wise matrix multiplication 
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Returns a new matrix equal to the inverse of the current matrix</p>
 
@@ -242,11 +254,11 @@ a scalar, returns a new matrix equal to the elmement wise matrix multiplication 
         </li>
         
         
-        <li id="section-12">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Defines a four element vector class with common math operations</p>
 
@@ -264,11 +276,11 @@ vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Applies the input function to each element of the vector and returns a reference to this vector</p>
 
@@ -285,11 +297,11 @@ vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Homogenizes (sets the fourth element to 1) the current vector and returns a reference</p>
 
@@ -303,11 +315,11 @@ vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Unhomogenizes (sets the fourth element to 0) the current vector and returns a reference</p>
 
@@ -363,11 +375,11 @@ vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>reflect this vector around normal, assuming this vector is incident to surface</p>
 
@@ -424,11 +436,11 @@ vec3.prototype = {
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>reflect this vector around normal, assuming this vector is incident to surface</p>
 
@@ -482,11 +494,11 @@ vec2.prototype = {
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>/</p>
 
@@ -535,27 +547,14 @@ vec2.prototype = {
         </li>
         
         
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
-              </div>
-              <p>this.camera = (function() {</p>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <pre><code><span class="hljs-keyword">var</span> vec3 _pos;
-</code></pre>
+              <p>this.camera = (function() {</p>
+
             </div>
             
         </li>
@@ -567,8 +566,7 @@ vec2.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
-              <pre><code><span class="hljs-keyword">return</span> {
-    init : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+              <pre><code><span class="hljs-keyword">var</span> vec3 _pos;
 </code></pre>
             </div>
             
@@ -581,8 +579,8 @@ vec2.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
-              <pre><code>    }
-}
+              <pre><code><span class="hljs-keyword">return</span> {
+    init : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
 </code></pre>
             </div>
             
@@ -595,6 +593,20 @@ vec2.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
+              <pre><code>    }
+}
+</code></pre>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
               <p>} ());</p>
 
             </div>
@@ -605,11 +617,11 @@ vec2.prototype = {
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>this.camera.</p>
 
@@ -628,28 +640,15 @@ WGL.prototype = {
         </li>
         
         
-        <li id="section-25">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
-              </div>
-              <p>function Shader() {
-    this.glshader = (function() {</p>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
-              <pre><code>    <span class="hljs-keyword">var</span> _id;
-</code></pre>
+              <p>function Shader() {
+    this.glshader = (function() {</p>
+
             </div>
             
         </li>
@@ -661,8 +660,7 @@ WGL.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
-              <pre><code>    <span class="hljs-keyword">return</span> {
-        init : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+              <pre><code>    <span class="hljs-keyword">var</span> _id;
 </code></pre>
             </div>
             
@@ -675,7 +673,8 @@ WGL.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
-              <pre><code>        }
+              <pre><code>    <span class="hljs-keyword">return</span> {
+        init : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
 </code></pre>
             </div>
             
@@ -688,7 +687,7 @@ WGL.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
-              <pre><code>        link : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+              <pre><code>        }
 </code></pre>
             </div>
             
@@ -701,8 +700,7 @@ WGL.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
-              <pre><code>        }
-    }
+              <pre><code>        link : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
 </code></pre>
             </div>
             
@@ -715,7 +713,8 @@ WGL.prototype = {
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
-              <pre><code>} ());
+              <pre><code>        }
+    }
 </code></pre>
             </div>
             
@@ -727,6 +726,19 @@ WGL.prototype = {
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <pre><code>} ());
+</code></pre>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <pre><code><span class="hljs-keyword">this</span>.glshader.init();
 </code></pre><p>}</p>
