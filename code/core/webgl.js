@@ -1,18 +1,35 @@
 function vec3(x, y, z) {
-	this.x = x || 0;
-	this.y = y || 0;
-	this.z = z || 0;
+
+	var self = {
+
+		x: x || 0,
+		y: y || 0,
+		z: z || 0,
+
+		add : function(v) {
+			if (v instanceof vec3) return vec3(this.x + v.x, this.y + v.y, this.z + v.z);
+			else return vec3(this.x + v, this.y + v, this.z + v);
+		}, 
+		sub : function(v) {
+			if (v instanceof vec3) return vec3(this.x - v.x, this.y - v.y, this.z - v.z);
+			else return vec3(this.x - v, this.y - v, this.z - v);
+		},
+		dot : function(v) {
+
+		}
+	}
+
+	return self;
 }
 
-vec3.prototype = {
-	add : function(v) {
-		if (v instanceof vec3) return new vec3(this.x + v.x, this.y + v.y, this.z + v.z);
-		else return new vec3(this.x + v, this.y + v, this.z + v);
-	}, 
-	sub : function() {
-		if (v instanceof vec3) return new vec3(this.x - v.x, this.y - v.y, this.z - v.z);
-		else return new vec3(this.x - v, this.y - v, this.z - v);
+///
+
+function gl(canvas) {
+	var self = {
+
 	}
+
+	return self;
 }
 
 function WGL(canvas) {
@@ -71,23 +88,23 @@ WGL.prototype = {
 }
 
 
-function Shader() {
-	this.glshader = (function() {
+// function Shader() {
+// 	this.glshader = (function() {
 
-		var _id;
+// 		var _id;
 
-		return {
-			init : function() {
+// 		return {
+// 			init : function() {
 
-			}
+// 			}
 
-			link : function() {
+// 			link : function() {
 
-			}
-		}
+// 			}
+// 		}
 
-	} ());
+// 	} ());
 
-	this.glshader.init();
-}
+// 	this.glshader.init();
+// }
 
