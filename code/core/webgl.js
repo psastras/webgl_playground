@@ -1,29 +1,82 @@
+// Not yet implemented error, thrown when a method is yet to be implemented.
+function NotImplementedError(message) {
+    this.name = "NotImplementedError";
+    this.message = (message || "");
+}
+NotImplementedError.prototype = Error.prototype;
+
+
+// Definse a 4 x 4 matrix with common math operations
 function mat4x4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) {
 	this.data = [a || 0, b || 0, c || 0, d || 0, e || 0, f || 0, g || 0, h || 0, i || 0, 
 				 j || 0, k || 0, l || 0, m || 0, n || 0, o || 0, p || 0];
 }
 
 mat4x4.prototype = {
-	transpose : function() {
 
+	// Applies the input function to each element of the matrix and returns a reference to this matrix
+	map : function(func) {
+		for (var i = data.length - 1; i >= 0; i--) {
+			func(this.data[i]);
+		};
+		return this;
+	}
+
+	// Returns a new matrix equal to the transpose of the current matrix
+	transposed : function() {
+		throw {name : "NotImplementedError", message : "todo"};
 	},
+	// Returns a reference to the transposed version of the current matrix
+	transposed : function() {
+		throw {name : "NotImplementedError", message : "todo"};
+	},
+	// If m is a matrix, returns a new matrix equal to an element by element sum of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the matrix summed with that scalar
 	add : function(m) {
-		
+		if (m instanceof mat4x4) return new mat4x4(	this.data[0] + 	m.data[0], 	this.data[1] + m.data[1], 	this.data[2] + m.data[2], 	this.data[3] + m.data[3],
+													this.data[4] + 	m.data[4], 	this.data[5] + m.data[5], 	this.data[6] + m.data[6], 	this.data[7] + m.data[7],
+													this.data[8] + 	m.data[8], 	this.data[9] + m.data[9], 	this.data[10] + m.data[10], this.data[11] + m.data[11],
+													this.data[12] + m.data[12], this.data[13] + m.data[13], this.data[14] + m.data[14], this.data[15] + m.data[15]);
+		else return new mat4x4(	this.data[0] + m, 	this.data[1] + m, 	this.data[2] + m, 	this.data[3] + m,
+								this.data[4] + m, 	this.data[5] + m, 	this.data[6] + m, 	this.data[7] + m,
+								this.data[8] + m, 	this.data[9] + m, 	this.data[10] + m, 	this.data[11] + m,
+								this.data[12] + m, 	this.data[13] + m, 	this.data[14] + m, 	this.data[15] + m);
 	},
+	// If m is a matrix, returns a new matrix equal to an element by element difference of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the matrix minus the scalar
 	sub : function(m) {
-
+		if (m instanceof mat4x4) return new mat4x4(	this.data[0] - 	m.data[0], 	this.data[1] - m.data[1], 	this.data[2] - m.data[2], 	this.data[3] - m.data[3],
+													this.data[4] - 	m.data[4], 	this.data[5] - m.data[5], 	this.data[6] - m.data[6], 	this.data[7] - m.data[7],
+													this.data[8] - 	m.data[8], 	this.data[9] - m.data[9], 	this.data[10] - m.data[10], this.data[11] - m.data[11],
+													this.data[12] - m.data[12], this.data[13] - m.data[13], this.data[14] - m.data[14], this.data[15] - m.data[15]);
+		else return new mat4x4(	this.data[0] - m, 	this.data[1] - m, 	this.data[2] - m, 	this.data[3] - m,
+								this.data[4] - m, 	this.data[5] - m, 	this.data[6] - m, 	this.data[7] - m,
+								this.data[8] - m, 	this.data[9] - m, 	this.data[10] - m, 	this.data[11] - m,
+								this.data[12] - m, 	this.data[13] - m, 	this.data[14] - m, 	this.data[15] - m);
 	},
+	// If m is a matrix, returns a new matrix equal to the matrix multiplication of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the elmement wise matrix multiplication with the scalar
 	mul : function(m) {
-
+		if (m instanceof mat4x4) throw {name : "NotImplementedError", message : "todo"};
+		else return new mat4x4(	this.data[0] * m, 	this.data[1] * m, 	this.data[2] * m, 	this.data[3] * m,
+								this.data[4] * m, 	this.data[5] * m, 	this.data[6] * m, 	this.data[7] * m,
+								this.data[8] * m, 	this.data[9] * m, 	this.data[10] * m, 	this.data[11] * m,
+								this.data[12] * m, 	this.data[13] * m, 	this.data[14] * m, 	this.data[15] * m);
 	},
+	// Returns a new matrix equal to the elmement wise matrix division with the scalar
 	div : function(m) {
-
+		return new mat4x4(	this.data[0] / m, 	this.data[1] / m, 	this.data[2] / m, 	this.data[3] / m,
+							this.data[4] / m, 	this.data[5] / m, 	this.data[6] / m, 	this.data[7] / m,
+							this.data[8] / m, 	this.data[9] / m, 	this.data[10] / m, 	this.data[11] / m,
+							this.data[12] / m, 	this.data[13] / m, 	this.data[14] / m, 	this.data[15] / m);
 	},
+	// Returns the determinant of the matrix
 	det : function() {
-
+		throw {name : "NotImplementedError", message : "todo"};
 	},
+	// Returns a new matrix equal to the inverse of the current matrix
 	inv : function() {
-
+		throw {name : "NotImplementedError", message : "todo"};
 	},
 }
 
@@ -36,6 +89,15 @@ function vec4(x, y, z, w) {
 }
 
 vec4.prototype = {
+	// Applies the input function to each element of the vector and returns a reference to this vector
+	map : function(func) {
+		func(this.x);
+		func(this.y);
+		func(this.z);
+		func(this.w);
+		return this;
+	}
+
 	// Homogenizes (sets the fourth element to 1) the current vector and returns a reference
 	homogenize : function() {
 		this.w = 1;
