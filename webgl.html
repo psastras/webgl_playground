@@ -78,7 +78,7 @@ GLError.prototype = <span class="hljs-built_in">Error</span>.prototype;</pre></d
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h2 id="quaternion">Quaternion</h2>
+              <h2 id="mat4x4">Mat4x4</h2>
 
             </div>
             
@@ -90,92 +90,6 @@ GLError.prototype = <span class="hljs-built_in">Error</span>.prototype;</pre></d
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Quaternion</span><span class="hljs-params">(x, y, z, w)</span> {</span>
-	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Quaternion)	Vec4.call(<span class="hljs-keyword">this</span>, x.data);
-	<span class="hljs-keyword">else</span> Vec4.call(<span class="hljs-keyword">this</span>, x, y, z, w);
-}
-
-Quaternion.prototype = <span class="hljs-keyword">new</span> Vec4();
-Quaternion.prototype.constructor = Quaternion;
-Quaternion.prototype = {
-	conjugated : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = -<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>];
-		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = -<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>];
-		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = -<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>];
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-	},
-	conjugate : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Quaternion(<span class="hljs-keyword">this</span>).conjugated();
-	},
-	inverted : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.conjugated().diveq(<span class="hljs-keyword">this</span>.magnitude());
-	},
-	inverse : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Quaternion(<span class="hljs-keyword">this</span>).inverted();
-	},
-	muleq : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(q)</span> {</span>
-		<span class="hljs-keyword">if</span> (q <span class="hljs-keyword">instanceof</span> Quaternion) {
-			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data.set(<span class="hljs-keyword">new</span> Quaternion(
-					<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">2</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">1</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">3</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">0</span>],
-					<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">0</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">2</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">3</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">1</span>],
-					<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">1</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">0</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">3</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">2</span>],
-					<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">3</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">0</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">1</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">2</span>]
-				).data);
-		}
-		<span class="hljs-keyword">return</span> Vec4.prototype.muleq.call(<span class="hljs-keyword">this</span>, q);
-	},
-	mul : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(q)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Quaternion(<span class="hljs-keyword">this</span>).muleq(q);
-	},
-	rotMat : <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Mat4x4([
-				<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] - <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>], 
-				<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] - <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>],
-				<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] + <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>],
-				<span class="hljs-number">0</span>,
-				<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] + <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>],
-				<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] - <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>], 
-				<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] - <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>], 
-				<span class="hljs-number">0</span>,
-				<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] - <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>],
-				<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] + <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>],
-				<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] - <span class="hljs-number">2</span>*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]*<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>], <span class="hljs-number">0</span>,
-				<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
-			]);
-	},
-	complex : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.data.subarray(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>));
-	},
-	rotatedVector : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.mul(<span class="hljs-keyword">new</span> Quaternion(v.data.subarray(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)))).mul(<span class="hljs-keyword">this</span>.conjugate()).complex();
-	}
-}</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <h2 id="mat4x4">Mat4x4</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Constructs a 4 x 4 matrix with common math operations</p>
 
@@ -191,11 +105,11 @@ Quaternion.prototype = {
         </li>
         
         
-        <li id="section-8">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Returns a Mat4x4 equal to the identity matrix (1s on the diagonal)</p>
 
@@ -213,11 +127,11 @@ Mat4x4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Applies the input function to each element of the matrix and returns a reference to this matrix</p>
 
@@ -231,11 +145,11 @@ Mat4x4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Returns a new matrix equal to the transpose of the current matrix</p>
 
@@ -251,11 +165,11 @@ Mat4x4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>If m is a matrix, returns a reference to this matrix equal to an element by element sum of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the matrix summed with that scalar</p>
@@ -270,11 +184,11 @@ a scalar, returns a new matrix equal to the matrix summed with that scalar</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to an element by element sum of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the matrix summed with that scalar</p>
@@ -288,11 +202,11 @@ a scalar, returns a new matrix equal to the matrix summed with that scalar</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>If m is a matrix, returns a reference to this matrix equal to an element by element difference of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the matrix minus the scalar</p>
@@ -307,11 +221,11 @@ a scalar, returns a new matrix equal to the matrix minus the scalar</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to an element by element difference of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the matrix minus the scalar</p>
@@ -325,11 +239,11 @@ a scalar, returns a new matrix equal to the matrix minus the scalar</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>If m is a matrix, returns a reference to this matrix equal to the matrix multiplication of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the element wise matrix multiplication with the scalar</p>
@@ -362,11 +276,11 @@ a scalar, returns a new matrix equal to the element wise matrix multiplication w
         </li>
         
         
-        <li id="section-16">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to the matrix multiplication of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the element wise matrix multiplication with the scalar</p>
@@ -386,11 +300,11 @@ a scalar, returns a new matrix equal to the element wise matrix multiplication w
         </li>
         
         
-        <li id="section-17">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>If m is a matrix, returns a reference to this matrix equal to the matrix division of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the element wise matrix division with the scalar</p>
@@ -405,11 +319,11 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
         </li>
         
         
-        <li id="section-18">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>If m is a matrix, returns a new matrix equal to the matrix division of the two matrices.  Else if m is 
 a scalar, returns a new matrix equal to the element wise matrix division with the scalar</p>
@@ -423,11 +337,11 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
         </li>
         
         
-        <li id="section-19">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Returns the determinant of the matrix</p>
 
@@ -440,11 +354,11 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
         </li>
         
         
-        <li id="section-20">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Returns a new matrix equal to the inverse of the current matrix</p>
 
@@ -475,11 +389,11 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
         </li>
         
         
-        <li id="section-21">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Returns true of the elements of this matrix and m are equal</p>
 
@@ -493,11 +407,11 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
         </li>
         
         
-        <li id="section-22">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <h2 id="vec4">Vec4</h2>
 
@@ -506,11 +420,11 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
         </li>
         
         
-        <li id="section-23">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Constructs a four element vector class with common math operations</p>
 
@@ -526,7 +440,7 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
 		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x || <span class="hljs-number">0</span>;
 		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = y || <span class="hljs-number">0</span>;
 		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = z || <span class="hljs-number">0</span>;
-		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] = w || <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] = w || <span class="hljs-number">0</span>;
 	}
 }
 
@@ -535,11 +449,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Applies the input function to each element of the vector and returns a reference to this vector</p>
 
@@ -556,11 +470,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Homogenizes (sets the fourth element to 1) the current vector and returns a reference</p>
 
@@ -574,11 +488,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Unhomogenizes (sets the fourth element to 0) the current vector and returns a reference</p>
 
@@ -592,11 +506,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Homogenizes (sets the fourth element to 1) a copy of the current vector and returns the new vector</p>
 
@@ -609,11 +523,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Unhomogenizes (sets the fourth element to 1) a copy of the current vector and returns the new vector</p>
 
@@ -626,11 +540,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector summed with that scalar</p>
@@ -646,11 +560,11 @@ a scalar, returns a new vector equal to the vector summed with that scalar</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector summed with that scalar</p>
@@ -664,11 +578,11 @@ a scalar, returns a new vector equal to the vector summed with that scalar</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector minus with that scalar</p>
@@ -684,11 +598,11 @@ a scalar, returns a new vector equal to the vector minus with that scalar</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector minus that scalar</p>
@@ -702,11 +616,11 @@ a scalar, returns a new vector equal to the vector minus that scalar</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Returns a new vector equal to the dot product of this vector and v.</p>
 
@@ -719,11 +633,11 @@ a scalar, returns a new vector equal to the vector minus that scalar</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector multiplied with that scalar</p>
@@ -739,11 +653,11 @@ a scalar, returns a new vector equal to the vector multiplied with that scalar</
         </li>
         
         
-        <li id="section-35">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector multiplied with that scalar</p>
@@ -757,11 +671,11 @@ a scalar, returns a new vector equal to the vector multiplied with that scalar</
         </li>
         
         
-        <li id="section-36">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector divided with that scalar</p>
@@ -777,11 +691,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector divided with that scalar</p>
@@ -790,6 +704,40 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
             
             <div class="content"><div class='highlight'><pre>	div : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>).diveq(v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Returns a reference to this vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.diveq(<span class="hljs-keyword">this</span>.magnitude());
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>).normalize();
 	},</pre></div></div>
             
         </li>
@@ -1152,6 +1100,40 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
+              <p>Returns a reference to this vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.diveq(<span class="hljs-keyword">this</span>.magnitude());
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec3(<span class="hljs-keyword">this</span>).normalize();
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
               <p>Returns the square root of the squared sum of elements of this vector (Euclidean length)</p>
 
             </div>
@@ -1163,11 +1145,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-58">
+        <li id="section-60">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-60">&#182;</a>
               </div>
               <p>Returns the squared sum of elements of this vector (Euclidean length squared)</p>
 
@@ -1180,11 +1162,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-59">
+        <li id="section-61">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
               <p>Returns the Euclidean distance between this vector and the vector v</p>
 
@@ -1197,11 +1179,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-60">
+        <li id="section-62">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-60">&#182;</a>
+                <a class="pilcrow" href="#section-62">&#182;</a>
               </div>
               <p>Returns the Euclidean distance squared between this vector and the vector v</p>
 
@@ -1214,11 +1196,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-61">
+        <li id="section-63">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-61">&#182;</a>
+                <a class="pilcrow" href="#section-63">&#182;</a>
               </div>
               <p>Returns a new vector equal to the cross product this vector and the vector v</p>
 
@@ -1231,11 +1213,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-62">
+        <li id="section-64">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-62">&#182;</a>
+                <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
               <p>Returns true of the elements of this vector and v are equal</p>
 
@@ -1248,11 +1230,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-63">
+        <li id="section-65">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-63">&#182;</a>
+                <a class="pilcrow" href="#section-65">&#182;</a>
               </div>
               <p>Reflect this vector around normal, assuming this vector is incident to surface</p>
 
@@ -1266,11 +1248,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-64">
+        <li id="section-66">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-64">&#182;</a>
+                <a class="pilcrow" href="#section-66">&#182;</a>
               </div>
               <h2 id="vec2">Vec2</h2>
 
@@ -1279,11 +1261,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-65">
+        <li id="section-67">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-65">&#182;</a>
+                <a class="pilcrow" href="#section-67">&#182;</a>
               </div>
               <p>Constructs a three element vector class with common math operations</p>
 
@@ -1306,11 +1288,11 @@ Vec2.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-66">
+        <li id="section-68">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-66">&#182;</a>
+                <a class="pilcrow" href="#section-68">&#182;</a>
               </div>
               <p>Applies the input function to each element of the vector and returns a reference to this vector</p>
 
@@ -1325,11 +1307,11 @@ Vec2.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-67">
+        <li id="section-69">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-67">&#182;</a>
+                <a class="pilcrow" href="#section-69">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector summed with that scalar</p>
@@ -1345,11 +1327,11 @@ a scalar, returns a new vector equal to the vector summed with that scalar</p>
         </li>
         
         
-        <li id="section-68">
+        <li id="section-70">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-68">&#182;</a>
+                <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector summed with that scalar</p>
@@ -1363,11 +1345,11 @@ a scalar, returns a new vector equal to the vector summed with that scalar</p>
         </li>
         
         
-        <li id="section-69">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-69">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector minus with that scalar</p>
@@ -1383,11 +1365,11 @@ a scalar, returns a new vector equal to the vector minus with that scalar</p>
         </li>
         
         
-        <li id="section-70">
+        <li id="section-72">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-70">&#182;</a>
+                <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector minus that scalar</p>
@@ -1401,11 +1383,11 @@ a scalar, returns a new vector equal to the vector minus that scalar</p>
         </li>
         
         
-        <li id="section-71">
+        <li id="section-73">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-71">&#182;</a>
+                <a class="pilcrow" href="#section-73">&#182;</a>
               </div>
               <p>Returns a new vector equal to the dot product of this vector and v.</p>
 
@@ -1418,11 +1400,11 @@ a scalar, returns a new vector equal to the vector minus that scalar</p>
         </li>
         
         
-        <li id="section-72">
+        <li id="section-74">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-72">&#182;</a>
+                <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector multiplied with that scalar</p>
@@ -1438,11 +1420,11 @@ a scalar, returns a new vector equal to the vector multiplied with that scalar</
         </li>
         
         
-        <li id="section-73">
+        <li id="section-75">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-73">&#182;</a>
+                <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector multiplied with that scalar</p>
@@ -1456,11 +1438,11 @@ a scalar, returns a new vector equal to the vector multiplied with that scalar</
         </li>
         
         
-        <li id="section-74">
+        <li id="section-76">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-74">&#182;</a>
+                <a class="pilcrow" href="#section-76">&#182;</a>
               </div>
               <p>If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector divided with that scalar</p>
@@ -1476,11 +1458,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-75">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-75">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <p>If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
 a scalar, returns a new vector equal to the vector divided with that scalar</p>
@@ -1494,11 +1476,45 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-76">
+        <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>Returns a reference to this vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.diveq(<span class="hljs-keyword">this</span>.magnitude());
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec2(<span class="hljs-keyword">this</span>).normalize();
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
               </div>
               <p>Returns the square root of the squared sum of elements of this vector (Euclidean length)</p>
 
@@ -1511,11 +1527,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-77">
+        <li id="section-81">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>Returns the squared sum of elements of this vector (Euclidean length squared)</p>
 
@@ -1528,11 +1544,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-78">
+        <li id="section-82">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-78">&#182;</a>
+                <a class="pilcrow" href="#section-82">&#182;</a>
               </div>
               <p>Returns the Euclidean distance between this vector and the vector v</p>
 
@@ -1545,11 +1561,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-79">
+        <li id="section-83">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-83">&#182;</a>
               </div>
               <p>Returns the Euclidean distance squared between this vector and the vector v</p>
 
@@ -1562,11 +1578,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-80">
+        <li id="section-84">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
               <p>Returns true of the elements of this vector and v are equal</p>
 
@@ -1580,11 +1596,96 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-81">
+        <li id="section-85">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <h2 id="quaternion">Quaternion</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Quaternion</span><span class="hljs-params">(x, y, z, w)</span> {</span>
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Quaternion)	Vec4.call(<span class="hljs-keyword">this</span>, x.data);
+	<span class="hljs-keyword">else</span> Vec4.call(<span class="hljs-keyword">this</span>, x, y, z, w);
+}
+
+Quaternion.prototype = <span class="hljs-keyword">new</span> Vec4();
+Quaternion.prototype.constructor = Quaternion;
+Quaternion.prototype.conjugated = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = -<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>];
+	<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = -<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>];
+	<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = -<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>];
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+Quaternion.prototype.conjugate = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Quaternion(<span class="hljs-keyword">this</span>).conjugated();
+}
+Quaternion.prototype.inverted = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.conjugated().diveq(<span class="hljs-keyword">this</span>.magnitude());
+}
+Quaternion.prototype.inverse = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Quaternion(<span class="hljs-keyword">this</span>).inverted();
+}
+Quaternion.prototype.muleq = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(q)</span> {</span>
+	<span class="hljs-keyword">if</span> (q <span class="hljs-keyword">instanceof</span> Quaternion) {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data.set(<span class="hljs-keyword">new</span> Quaternion(
+				<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">2</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">1</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">3</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">0</span>],
+				<span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">0</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">2</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">3</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">1</span>],
+				<span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">1</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">0</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">3</span>] + <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">2</span>],
+				<span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] * q.data[<span class="hljs-number">3</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] * q.data[<span class="hljs-number">0</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] * q.data[<span class="hljs-number">1</span>] - <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] * q.data[<span class="hljs-number">2</span>]
+			).data);
+	}
+	<span class="hljs-keyword">return</span> Vec4.prototype.muleq.call(<span class="hljs-keyword">this</span>, q);
+}
+Quaternion.prototype.mul = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(q)</span> {</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Quaternion(<span class="hljs-keyword">this</span>).muleq(q);
+}
+Quaternion.prototype.rotMat = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">var</span> n = <span class="hljs-keyword">this</span>.normalized();
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Mat4x4([
+			<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*n.data[<span class="hljs-number">1</span>]*n.data[<span class="hljs-number">1</span>] - <span class="hljs-number">2</span>*n.data[<span class="hljs-number">2</span>]*n.data[<span class="hljs-number">2</span>], 
+			<span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">1</span>] - <span class="hljs-number">2</span>*n.data[<span class="hljs-number">2</span>]*n.data[<span class="hljs-number">3</span>],
+			<span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">2</span>] + <span class="hljs-number">2</span>*n.data[<span class="hljs-number">1</span>]*n.data[<span class="hljs-number">3</span>],
+			<span class="hljs-number">0</span>,
+			<span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">1</span>] + <span class="hljs-number">2</span>*n.data[<span class="hljs-number">2</span>]*n.data[<span class="hljs-number">3</span>],
+			<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">0</span>] - <span class="hljs-number">2</span>*n.data[<span class="hljs-number">2</span>]*n.data[<span class="hljs-number">2</span>], 
+			<span class="hljs-number">2</span>*n.data[<span class="hljs-number">1</span>]*n.data[<span class="hljs-number">2</span>] - <span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">3</span>], 
+			<span class="hljs-number">0</span>,
+			<span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">2</span>] - <span class="hljs-number">2</span>*n.data[<span class="hljs-number">1</span>]*n.data[<span class="hljs-number">3</span>],
+			<span class="hljs-number">2</span>*n.data[<span class="hljs-number">1</span>]*n.data[<span class="hljs-number">2</span>] + <span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">3</span>],
+			<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*n.data[<span class="hljs-number">0</span>]*n.data[<span class="hljs-number">0</span>] - <span class="hljs-number">2</span>*n.data[<span class="hljs-number">1</span>]*n.data[<span class="hljs-number">1</span>], <span class="hljs-number">0</span>,
+			<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+		]);
+}
+Quaternion.prototype.complex = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.data.subarray(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>));
+}
+Quaternion.prototype.rotatedVector = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+	<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.mul(<span class="hljs-keyword">new</span> Quaternion(v.data.subarray(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)))).mul(<span class="hljs-keyword">this</span>.conjugate()).complex();
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
               </div>
               <h2 id="gl">gl</h2>
 
@@ -1593,11 +1694,11 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
         </li>
         
         
-        <li id="section-82">
+        <li id="section-88">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <p>Constructs a GL instance responsible for managing a context associated with a canvas</p>
 
@@ -1630,11 +1731,11 @@ GL.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-83">
+        <li id="section-89">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
+                <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
               <p>Sets the draw loop function to repeat at the specified interval in milliseconds</p>
 
@@ -1648,11 +1749,11 @@ GL.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-84">
+        <li id="section-90">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <p>Resizes the canvas to the specified dimenion (vec2)</p>
 
@@ -1666,11 +1767,11 @@ GL.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-85">
+        <li id="section-91">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <p>Loads (compile, attach and links) a vertex and fragment shader from scripts with the given ids.  Returns the shader program.</p>
 
@@ -1722,11 +1823,11 @@ GL.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-86">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-86">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <p>Binds a uniform value to the current shader, infers the value type</p>
 
