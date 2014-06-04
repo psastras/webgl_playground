@@ -14,69 +14,6 @@ function GLError(message) {
 }
 GLError.prototype = Error.prototype;
 
-// Quaternion
-// ----------
-function Quaternion(x, y, z, w) {
-	if(x instanceof Quaternion)	Vec4.call(this, x.data);
-	else Vec4.call(this, x, y, z, w);
-}
-
-Quaternion.prototype = new Vec4();
-Quaternion.prototype.constructor = Quaternion;
-Quaternion.prototype = {
-	conjugated : function() {
-		this.data[0] = -this.data[0];
-		this.data[1] = -this.data[1];
-		this.data[2] = -this.data[2];
-		return this;
-	},
-	conjugate : function() {
-		return new Quaternion(this).conjugated();
-	},
-	inverted : function() {
-		return this.conjugated().diveq(this.magnitude());
-	},
-	inverse : function() {
-		return new Quaternion(this).inverted();
-	},
-	muleq : function(q) {
-		if (q instanceof Quaternion) {
-			return this.data.set(new Quaternion(
-					this.data[1] * q.data[2] - this.data[2] * q.data[1] + this.data[0] * q.data[3] + this.data[3] * q.data[0],
-					this.data[2] * q.data[0] - this.data[0] * q.data[2] + this.data[1] * q.data[3] + this.data[3] * q.data[1],
-					this.data[0] * q.data[1] - this.data[1] * q.data[0] + this.data[2] * q.data[3] + this.data[3] * q.data[2],
-					this.data[3] * q.data[3] - this.data[0] * q.data[0] - this.data[1] * q.data[1] - this.data[2] * q.data[2]
-				).data);
-		}
-		return Vec4.prototype.muleq.call(this, q);
-	},
-	mul : function(q) {
-		return new Quaternion(this).muleq(q);
-	},
-	rotMat : function () {
-		return new Mat4x4([
-				1-2*this.data[1]*this.data[1] - 2*this.data[2]*this.data[2], 
-				2*this.data[0]*this.data[1] - 2*this.data[2]*this.data[3],
-				2*this.data[0]*this.data[2] + 2*this.data[1]*this.data[3],
-				0,
-				2*this.data[0]*this.data[1] + 2*this.data[2]*this.data[3],
-				1-2*this.data[0]*this.data[0] - 2*this.data[2]*this.data[2], 
-				2*this.data[1]*this.data[2] - 2*this.data[0]*this.data[3], 
-				0,
-				2*this.data[0]*this.data[2] - 2*this.data[1]*this.data[3],
-				2*this.data[1]*this.data[2] + 2*this.data[0]*this.data[3],
-				1-2*this.data[0]*this.data[0] - 2*this.data[1]*this.data[1], 0,
-				0, 0, 0, 1
-			]);
-	},
-	complex : function() {
-		return new Vec4(this.data.subarray(0, 3));
-	},
-	rotatedVector : function(v) {
-		return (this.mul(new Quaternion(v.data.subarray(0, 3)))).mul(this.conjugate()).complex();
-	}
-}
-
 // Mat4x4
 // ----------
 // Constructs a 4 x 4 matrix with common math operations
@@ -223,7 +160,7 @@ function Vec4(x, y, z, w) {
 		this.data[0] = x || 0;
 		this.data[1] = y || 0;
 		this.data[2] = z || 0;
-		this.data[3] = w || 1;
+		this.data[3] = w || 0;
 	}
 }
 
@@ -305,6 +242,14 @@ Vec4.prototype = {
 	// a scalar, returns a new vector equal to the vector divided with that scalar
 	div : function(v) {
 		return new Vec4(this).diveq(v);
+	},
+	// Returns a reference to this vector equal to the normalized (unit length) of this vector
+	normalize : function() {
+		return this.diveq(this.magnitude());
+	},
+	// Returns a new vector equal to the normalized (unit length) of this vector
+	normalized : function() {
+		return new Vec4(this).normalize();
 	},
 	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
 	magnitude : function() {
@@ -413,6 +358,14 @@ Vec3.prototype = {
 	div : function(v) {
 		return new Vec3(this).diveq(v);
 	},
+	// Returns a reference to this vector equal to the normalized (unit length) of this vector
+	normalize : function() {
+		return this.diveq(this.magnitude());
+	},
+	// Returns a new vector equal to the normalized (unit length) of this vector
+	normalized : function() {
+		return new Vec3(this).normalize();
+	},
 	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
 	magnitude : function() {
 		return Math.sqrt(this.magnitude2());
@@ -517,6 +470,14 @@ Vec2.prototype = {
 	div : function(v) {
 		return new Vec2(this).diveq(v);
 	},
+	// Returns a reference to this vector equal to the normalized (unit length) of this vector
+	normalize : function() {
+		return this.diveq(this.magnitude());
+	},
+	// Returns a new vector equal to the normalized (unit length) of this vector
+	normalized : function() {
+		return new Vec2(this).normalize();
+	},
 	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
 	magnitude : function() {
 		return Math.sqrt(this.magnitude2());
@@ -537,6 +498,68 @@ Vec2.prototype = {
 	equals : function(v) {
 		return this.data[0] == v.data[0] && this.data[1] == v.data[1];
 	},
+}
+
+// Quaternion
+// ----------
+function Quaternion(x, y, z, w) {
+	if(x instanceof Quaternion)	Vec4.call(this, x.data);
+	else Vec4.call(this, x, y, z, w);
+}
+
+Quaternion.prototype = new Vec4();
+Quaternion.prototype.constructor = Quaternion;
+Quaternion.prototype.conjugated = function() {
+	this.data[0] = -this.data[0];
+	this.data[1] = -this.data[1];
+	this.data[2] = -this.data[2];
+	return this;
+}
+Quaternion.prototype.conjugate = function() {
+	return new Quaternion(this).conjugated();
+}
+Quaternion.prototype.inverted = function() {
+	return this.conjugated().diveq(this.magnitude());
+}
+Quaternion.prototype.inverse = function() {
+	return new Quaternion(this).inverted();
+}
+Quaternion.prototype.muleq = function(q) {
+	if (q instanceof Quaternion) {
+		return this.data.set(new Quaternion(
+				this.data[1] * q.data[2] - this.data[2] * q.data[1] + this.data[0] * q.data[3] + this.data[3] * q.data[0],
+				this.data[2] * q.data[0] - this.data[0] * q.data[2] + this.data[1] * q.data[3] + this.data[3] * q.data[1],
+				this.data[0] * q.data[1] - this.data[1] * q.data[0] + this.data[2] * q.data[3] + this.data[3] * q.data[2],
+				this.data[3] * q.data[3] - this.data[0] * q.data[0] - this.data[1] * q.data[1] - this.data[2] * q.data[2]
+			).data);
+	}
+	return Vec4.prototype.muleq.call(this, q);
+}
+Quaternion.prototype.mul = function(q) {
+	return new Quaternion(this).muleq(q);
+}
+Quaternion.prototype.rotMat = function () {
+	var n = this.normalized();
+	return new Mat4x4([
+			1-2*n.data[1]*n.data[1] - 2*n.data[2]*n.data[2], 
+			2*n.data[0]*n.data[1] - 2*n.data[2]*n.data[3],
+			2*n.data[0]*n.data[2] + 2*n.data[1]*n.data[3],
+			0,
+			2*n.data[0]*n.data[1] + 2*n.data[2]*n.data[3],
+			1-2*n.data[0]*n.data[0] - 2*n.data[2]*n.data[2], 
+			2*n.data[1]*n.data[2] - 2*n.data[0]*n.data[3], 
+			0,
+			2*n.data[0]*n.data[2] - 2*n.data[1]*n.data[3],
+			2*n.data[1]*n.data[2] + 2*n.data[0]*n.data[3],
+			1-2*n.data[0]*n.data[0] - 2*n.data[1]*n.data[1], 0,
+			0, 0, 0, 1
+		]);
+}
+Quaternion.prototype.complex = function() {
+	return new Vec4(this.data.subarray(0, 3));
+}
+Quaternion.prototype.rotatedVector = function(v) {
+	return (this.mul(new Quaternion(v.data.subarray(0, 3)))).mul(this.conjugate()).complex();
 }
 
 // gl
