@@ -24,7 +24,8 @@ void main() {
 	var canvas = document.getElementById("glcanvas");
 	var wgl = new GL(canvas);
 	console.log(wgl.loadShaderFromScripts("2d-vertex-shader", "2d-fragment-shader"));
-
+	var q0 = new Quaternion(1, 1, 1, 1);
+	console.log(q0.conjugate());
 	wgl.resize(new Vec2(900, 500));
 
 	function draw() {

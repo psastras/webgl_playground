@@ -14,79 +14,199 @@ function GLError(message) {
 }
 GLError.prototype = Error.prototype;
 
+// Quaternion
+// ----------
+function Quaternion(x, y, z, w) {
+	if(x instanceof Quaternion)	Vec4.call(this, x.data);
+	else Vec4.call(this, x, y, z, w);
+}
+
+Quaternion.prototype = new Vec4();
+Quaternion.prototype.constructor = Quaternion;
+Quaternion.prototype = {
+	conjugated : function() {
+		this.data[0] = -this.data[0];
+		this.data[1] = -this.data[1];
+		this.data[2] = -this.data[2];
+		return this;
+	},
+	conjugate : function() {
+		return new Quaternion(this).conjugated();
+	},
+	inverted : function() {
+		return this.conjugated().diveq(this.magnitude());
+	},
+	inverse : function() {
+		return new Quaternion(this).inverted();
+	},
+	muleq : function(q) {
+		if (q instanceof Quaternion) {
+			return this.data.set(new Quaternion(
+					this.data[1] * q.data[2] - this.data[2] * q.data[1] + this.data[0] * q.data[3] + this.data[3] * q.data[0],
+					this.data[2] * q.data[0] - this.data[0] * q.data[2] + this.data[1] * q.data[3] + this.data[3] * q.data[1],
+					this.data[0] * q.data[1] - this.data[1] * q.data[0] + this.data[2] * q.data[3] + this.data[3] * q.data[2],
+					this.data[3] * q.data[3] - this.data[0] * q.data[0] - this.data[1] * q.data[1] - this.data[2] * q.data[2]
+				).data);
+		}
+		return Vec4.prototype.muleq.call(this, q);
+	},
+	mul : function(q) {
+		return new Quaternion(this).muleq(q);
+	},
+	rotMat : function () {
+		return new Mat4x4([
+				1-2*this.data[1]*this.data[1] - 2*this.data[2]*this.data[2], 
+				2*this.data[0]*this.data[1] - 2*this.data[2]*this.data[3],
+				2*this.data[0]*this.data[2] + 2*this.data[1]*this.data[3],
+				0,
+				2*this.data[0]*this.data[1] + 2*this.data[2]*this.data[3],
+				1-2*this.data[0]*this.data[0] - 2*this.data[2]*this.data[2], 
+				2*this.data[1]*this.data[2] - 2*this.data[0]*this.data[3], 
+				0,
+				2*this.data[0]*this.data[2] - 2*this.data[1]*this.data[3],
+				2*this.data[1]*this.data[2] + 2*this.data[0]*this.data[3],
+				1-2*this.data[0]*this.data[0] - 2*this.data[1]*this.data[1], 0,
+				0, 0, 0, 1
+			]);
+	},
+	complex : function() {
+		return new Vec4(this.data.subarray(0, 3));
+	},
+	rotatedVector : function(v) {
+		return (this.mul(new Quaternion(v.data.subarray(0, 3)))).mul(this.conjugate()).complex();
+	}
+}
+
 // Mat4x4
 // ----------
 // Constructs a 4 x 4 matrix with common math operations
 function Mat4x4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) {
-	this.data = [a || 0, b || 0, c || 0, d || 0, e || 0, f || 0, g || 0, h || 0, i || 0, 
-				 j || 0, k || 0, l || 0, m || 0, n || 0, o || 0, p || 0];
+	this.data = new Float32Array(16);
+	if(a instanceof Mat4x4) this.data.set(a.data);
+	else if(a instanceof Array) this.data.set(a);
+	else this.data.set([a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p]);
+}
+
+// Returns a Mat4x4 equal to the identity matrix (1s on the diagonal)
+Mat4x4.Identity = function() {
+	return new Mat4x4([1, 0, 0, 0,
+					   0, 1, 0, 0,
+					   0, 0, 1, 0,
+					   0, 0, 0, 1]);
 }
 
 Mat4x4.prototype = {
 
 	// Applies the input function to each element of the matrix and returns a reference to this matrix
 	map : function(func) {
-		for (var i = data.length - 1; i >= 0; i--) {
-			func(this.data[i]);
-		};
+		for (var i = 15; i >= 0; i--) this.data[i] = func(this.data[i], i);
 		return this;
 	},
 
 	// Returns a new matrix equal to the transpose of the current matrix
-	transposed : function() {
-		throw {name : "NotImplementedError", message : "todo"};
+	transpose : function() {
+		return new Mat4x4([this.data[0], this.data[4], this.data[8], this.data[12],
+						   this.data[1], this.data[5], this.data[9], this.data[13],
+						   this.data[2], this.data[6], this.data[10], this.data[14],
+						   this.data[3], this.data[7], this.data[11], this.data[15]]);
 	},
-	// Returns a reference to the transposed version of the current matrix
-	transposed : function() {
-		throw {name : "NotImplementedError", message : "todo"};
+	// If m is a matrix, returns a reference to this matrix equal to an element by element sum of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the matrix summed with that scalar
+	addeq : function(m) {
+		if (m instanceof Mat4x4) return this.map(function(x, i) { return x + m[i]; });
+		else return this.map(function(x, i) { return x + m; });
 	},
 	// If m is a matrix, returns a new matrix equal to an element by element sum of the two matrices.  Else if m is 
 	// a scalar, returns a new matrix equal to the matrix summed with that scalar
 	add : function(m) {
-		if (m instanceof Mat4x4) return new Mat4x4(this.data[0] + m.data[0], this.data[1] + m.data[1], this.data[2] + m.data[2], this.data[3] + m.data[3],
-													this.data[4] + m.data[4], this.data[5] + m.data[5], this.data[6] + m.data[6], this.data[7] + m.data[7],
-													this.data[8] + m.data[8], this.data[9] + m.data[9], this.data[10] + m.data[10], this.data[11] + m.data[11],
-													this.data[12] + m.data[12], this.data[13] + m.data[13], this.data[14] + m.data[14], this.data[15] + m.data[15]);
-		else return new Mat4x4(this.data[0] + m, this.data[1] + m, this.data[2] + m, this.data[3] + m,
-													this.data[4] + m, this.data[5] + m, this.data[6] + m, this.data[7] + m,
-													this.data[8] + m, this.data[9] + m, this.data[10] + m, this.data[11] + m,
-													this.data[12] + m, this.data[13] + m, this.data[14] + m, this.data[15] + m);
+		return new Mat4x4(this).addeq(m);
+	},
+	// If m is a matrix, returns a reference to this matrix equal to an element by element difference of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the matrix minus the scalar
+	subeq : function(m) {
+		if (m instanceof Mat4x4) return this.map(function(x, i) { return x - m[i]; });
+		else return this.map(function(x, i) { return x - m; });
 	},
 	// If m is a matrix, returns a new matrix equal to an element by element difference of the two matrices.  Else if m is 
 	// a scalar, returns a new matrix equal to the matrix minus the scalar
 	sub : function(m) {
-		if (m instanceof Mat4x4) return new Mat4x4(this.data[0] - m.data[0], this.data[1] - m.data[1], this.data[2] - m.data[2], this.data[3] - m.data[3],
-													this.data[4] - m.data[4], this.data[5] - m.data[5], this.data[6] - m.data[6], this.data[7] - m.data[7],
-													this.data[8] - m.data[8], this.data[9] - m.data[9], this.data[10] - m.data[10], this.data[11] - m.data[11],
-													this.data[12] - m.data[12], this.data[13] - m.data[13], this.data[14] - m.data[14], this.data[15] - m.data[15]);
-		else return new Mat4x4(this.data[0] - m, this.data[1] - m, this.data[2] - m, this.data[3] - m,
-								this.data[4] - m, this.data[5] - m, this.data[6] - m, this.data[7] - m,
-								this.data[8] - m, this.data[9] - m, this.data[10] - m, this.data[11] - m,
-								this.data[12] - m, this.data[13] - m, this.data[14] - m, this.data[15] - m);
+		return new Mat4x4(this).subeq(m);
+	},
+	// If m is a matrix, returns a reference to this matrix equal to the matrix multiplication of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the element wise matrix multiplication with the scalar
+	muleq : function(m) {
+		if (m instanceof Mat4x4) {
+			this.data.set([this.data[0]  * m.data[0] + this.data[1]  * m.data[4] + this.data[2]  * m.data[8]  + this.data[3]  * m.data[12],
+						   this.data[0]  * m.data[1] + this.data[1]  * m.data[5] + this.data[2]  * m.data[9]  + this.data[3]  * m.data[13],
+						   this.data[0]  * m.data[2] + this.data[1]  * m.data[6] + this.data[2]  * m.data[10] + this.data[3]  * m.data[14],
+						   this.data[0]  * m.data[3] + this.data[1]  * m.data[7] + this.data[2]  * m.data[11] + this.data[3]  * m.data[15],
+						   this.data[4]  * m.data[0] + this.data[5]  * m.data[4] + this.data[6]  * m.data[8]  + this.data[7]  * m.data[12],
+						   this.data[4]  * m.data[1] + this.data[5]  * m.data[5] + this.data[6]  * m.data[9]  + this.data[7]  * m.data[13],
+						   this.data[4]  * m.data[2] + this.data[5]  * m.data[6] + this.data[6]  * m.data[10] + this.data[7]  * m.data[14],
+						   this.data[4]  * m.data[3] + this.data[5]  * m.data[7] + this.data[6]  * m.data[11] + this.data[7]  * m.data[15],
+						   this.data[8]  * m.data[0] + this.data[9]  * m.data[4] + this.data[10] * m.data[8]  + this.data[11] * m.data[12],
+						   this.data[8]  * m.data[1] + this.data[9]  * m.data[5] + this.data[10] * m.data[9]  + this.data[11] * m.data[13],
+						   this.data[8]  * m.data[2] + this.data[9]  * m.data[6] + this.data[10] * m.data[10] + this.data[11] * m.data[14],
+						   this.data[8]  * m.data[3] + this.data[9]  * m.data[7] + this.data[10] * m.data[11] + this.data[11] * m.data[15],
+						   this.data[12] * m.data[0] + this.data[13] * m.data[4] + this.data[14] * m.data[8]  + this.data[15] * m.data[12],
+						   this.data[12] * m.data[1] + this.data[13] * m.data[5] + this.data[14] * m.data[9]  + this.data[15] * m.data[13],
+						   this.data[12] * m.data[2] + this.data[13] * m.data[6] + this.data[14] * m.data[10] + this.data[15] * m.data[14],
+						   this.data[12] * m.data[3] + this.data[13] * m.data[7] + this.data[14] * m.data[11] + this.data[15] * m.data[15]]);
+			return this;
+		}
+		else return this.map(function(x, i) { return x * m; });
 	},
 	// If m is a matrix, returns a new matrix equal to the matrix multiplication of the two matrices.  Else if m is 
-	// a scalar, returns a new matrix equal to the elmement wise matrix multiplication with the scalar
+	// a scalar, returns a new matrix equal to the element wise matrix multiplication with the scalar
 	mul : function(m) {
-		if (m instanceof Mat4x4) throw {name : "NotImplementedError", message : "todo"};
-		else return new Mat4x4(this.data[0] * m, this.data[1] * m, this.data[2] * m, this.data[3] * m,
-								this.data[4] * m, this.data[5] * m, this.data[6] * m, this.data[7] * m,
-								this.data[8] * m, this.data[9] * m, this.data[10] * m, this.data[11] * m,
-								this.data[12] * m, this.data[13] * m, this.data[14] * m, this.data[15] * m);
+		if (m instanceof Vec4) {
+			return new Vec4(this.data[0] * m.data[0] + this.data[1] * m.data[1] + this.data[2] * m.data[2] + this.data[3] * m.data[3],
+							this.data[4] * m.data[0] + this.data[5] * m.data[1] + this.data[6] * m.data[2] + this.data[7] * m.data[3],
+							this.data[8] * m.data[0] + this.data[9] * m.data[1] + this.data[10] * m.data[2] + this.data[11] * m.data[3],
+							this.data[12] * m.data[0] + this.data[13] * m.data[1] + this.data[14] * m.data[2] + this.data[15] * m.data[3]);
+		}
+		return new Mat4x4(this).muleq(m);
 	},
-	// Returns a new matrix equal to the elmement wise matrix division with the scalar
+	// If m is a matrix, returns a reference to this matrix equal to the matrix division of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the element wise matrix division with the scalar
+	diveq : function(m) {
+		if (m instanceof Mat4x4) return this.map(function(x, i) { return x / m[i]; });
+		else return this.map(function(x, i) { return x / m; });
+	},
+	// If m is a matrix, returns a new matrix equal to the matrix division of the two matrices.  Else if m is 
+	// a scalar, returns a new matrix equal to the element wise matrix division with the scalar
 	div : function(m) {
-		return new Mat4x4(this.data[0] / m, this.data[1] / m, this.data[2] / m, this.data[3] / m,
-							this.data[4] / m, this.data[5] / m, this.data[6] / m, this.data[7] / m,
-							this.data[8] / m, this.data[9] / m, this.data[10] / m, this.data[11] / m,
-							this.data[12] / m, this.data[13] / m, this.data[14] / m, this.data[15] / m);
+		return new Mat4x4(this).diveq(m);
 	},
 	// Returns the determinant of the matrix
 	det : function() {
-		throw {name : "NotImplementedError", message : "todo"};
+		return this.data[0]*this.data[5]*this.data[10]*this.data[15]-this.data[0]*this.data[5]*this.data[11]*this.data[14]-this.data[0]*this.data[6]*this.data[9]*this.data[15]+this.data[0]*this.data[6]*this.data[11]*this.data[13]+this.data[0]*this.data[7]*this.data[9]*this.data[14]-this.data[0]*this.data[7]*this.data[10]*this.data[13]-this.data[1]*this.data[4]*this.data[10]*this.data[15]+this.data[1]*this.data[4]*this.data[11]*this.data[14]+this.data[1]*this.data[6]*this.data[8]*this.data[15]-this.data[1]*this.data[6]*this.data[11]*this.data[12]-this.data[1]*this.data[7]*this.data[8]*this.data[14]+this.data[1]*this.data[7]*this.data[10]*this.data[12]+this.data[2]*this.data[4]*this.data[9]*this.data[15]-this.data[2]*this.data[4]*this.data[11]*this.data[13]-this.data[2]*this.data[5]*this.data[8]*this.data[15]+this.data[2]*this.data[5]*this.data[11]*this.data[12]+this.data[2]*this.data[7]*this.data[8]*this.data[13]-this.data[2]*this.data[7]*this.data[9]*this.data[12]-this.data[3]*this.data[4]*this.data[9]*this.data[14]+this.data[3]*this.data[4]*this.data[10]*this.data[13]+this.data[3]*this.data[5]*this.data[8]*this.data[14]-this.data[3]*this.data[5]*this.data[10]*this.data[12]-this.data[3]*this.data[6]*this.data[8]*this.data[13]+this.data[3]*this.data[6]*this.data[9]*this.data[12];
 	},
 	// Returns a new matrix equal to the inverse of the current matrix
 	inv : function() {
-		throw {name : "NotImplementedError", message : "todo"};
+		var d = this.det();
+		return new Mat4x4([
+			(this.data[5]*this.data[10]*this.data[15]+this.data[6]*this.data[11]*this.data[13]+this.data[7]*this.data[9]*this.data[14]-this.data[5]*this.data[11]*this.data[14]-this.data[6]*this.data[9]*this.data[15]-this.data[7]*this.data[10]*this.data[13])/d,
+			(this.data[1]*this.data[11]*this.data[14]+this.data[2]*this.data[9]*this.data[15]+this.data[3]*this.data[10]*this.data[13]-this.data[1]*this.data[10]*this.data[15]-this.data[2]*this.data[11]*this.data[13]-this.data[3]*this.data[9]*this.data[14])/d,
+			(this.data[1]*this.data[6]*this.data[15]+this.data[2]*this.data[7]*this.data[13]+this.data[3]*this.data[5]*this.data[14]-this.data[1]*this.data[7]*this.data[14]-this.data[2]*this.data[5]*this.data[15]-this.data[3]*this.data[6]*this.data[13])/d,
+			(this.data[1]*this.data[7]*this.data[10]+this.data[2]*this.data[5]*this.data[11]+this.data[3]*this.data[6]*this.data[9]-this.data[1]*this.data[6]*this.data[11]-this.data[2]*this.data[7]*this.data[9]-this.data[3]*this.data[5]*this.data[10])/d,
+			(this.data[4]*this.data[11]*this.data[14]+this.data[7]*this.data[10]*this.data[12]+this.data[6]*this.data[8]*this.data[15]-this.data[4]*this.data[10]*this.data[15]-this.data[6]*this.data[11]*this.data[12]-this.data[7]*this.data[8]*this.data[14])/d,
+			(this.data[0]*this.data[10]*this.data[15]+this.data[2]*this.data[11]*this.data[12]+this.data[3]*this.data[8]*this.data[14]-this.data[0]*this.data[11]*this.data[14]-this.data[2]*this.data[8]*this.data[15]-this.data[3]*this.data[10]*this.data[12])/d,
+			(this.data[0]*this.data[7]*this.data[14]+this.data[2]*this.data[4]*this.data[15]+this.data[3]*this.data[6]*this.data[12]-this.data[0]*this.data[6]*this.data[15]-this.data[2]*this.data[7]*this.data[12]-this.data[3]*this.data[4]*this.data[14])/d,
+			(this.data[0]*this.data[6]*this.data[11]+this.data[2]*this.data[7]*this.data[8]+this.data[3]*this.data[4]*this.data[10]-this.data[0]*this.data[7]*this.data[10]-this.data[2]*this.data[4]*this.data[11]-this.data[3]*this.data[6]*this.data[8])/d,
+			(this.data[4]*this.data[9]*this.data[15]+this.data[5]*this.data[11]*this.data[12]+this.data[7]*this.data[8]*this.data[13]-this.data[4]*this.data[11]*this.data[13]-this.data[5]*this.data[8]*this.data[15]-this.data[7]*this.data[9]*this.data[12])/d,
+			(this.data[0]*this.data[11]*this.data[13]+this.data[1]*this.data[8]*this.data[15]+this.data[3]*this.data[9]*this.data[12]-this.data[0]*this.data[9]*this.data[15]-this.data[1]*this.data[11]*this.data[12]-this.data[3]*this.data[8]*this.data[13])/d,
+			(this.data[0]*this.data[5]*this.data[15]+this.data[1]*this.data[7]*this.data[12]+this.data[3]*this.data[4]*this.data[13]-this.data[0]*this.data[7]*this.data[13]-this.data[1]*this.data[4]*this.data[15]-this.data[3]*this.data[5]*this.data[12])/d,
+			(this.data[0]*this.data[7]*this.data[9]+this.data[1]*this.data[4]*this.data[11]+this.data[3]*this.data[5]*this.data[8]-this.data[0]*this.data[5]*this.data[11]-this.data[1]*this.data[7]*this.data[8]-this.data[3]*this.data[4]*this.data[9])/d,
+			(this.data[4]*this.data[10]*this.data[13]+this.data[5]*this.data[8]*this.data[14]+this.data[6]*this.data[9]*this.data[12]-this.data[4]*this.data[9]*this.data[14]-this.data[5]*this.data[10]*this.data[12]-this.data[6]*this.data[8]*this.data[13])/d,
+			(this.data[0]*this.data[9]*this.data[14]+this.data[1]*this.data[10]*this.data[12]+this.data[2]*this.data[8]*this.data[13]-this.data[0]*this.data[10]*this.data[13]-this.data[1]*this.data[8]*this.data[14]-this.data[2]*this.data[9]*this.data[12])/d,
+			(this.data[0]*this.data[6]*this.data[13]+this.data[1]*this.data[4]*this.data[14]+this.data[2]*this.data[5]*this.data[12]-this.data[0]*this.data[5]*this.data[14]-this.data[1]*this.data[6]*this.data[12]-this.data[2]*this.data[4]*this.data[13])/d,
+			(this.data[0]*this.data[5]*this.data[10]+this.data[1]*this.data[6]*this.data[8]+this.data[2]*this.data[4]*this.data[9]-this.data[0]*this.data[6]*this.data[9]-this.data[1]*this.data[4]*this.data[10]-this.data[2]*this.data[5]*this.data[8])/d
+		]);
+	},
+	// Returns true of the elements of this matrix and m are equal
+	equals : function(m) {
+		return this.map(function(x, i) { if(x != m.data[i]) return false; }) || true;
 	},
 }
 
@@ -94,62 +214,97 @@ Mat4x4.prototype = {
 // ----------
 // Constructs a four element vector class with common math operations
 function Vec4(x, y, z, w) {
-	this.x = x || 0;
-	this.y = y || 0;
-	this.z = z || 0;
-	this.w = w || 1;
+	this.data = new Float32Array(4);
+	if(x instanceof Vec4) {
+		this.data.set(x.data);
+	} else if(x instanceof Array || x instanceof Float32Array) {
+		this.data.set(x);
+	} else {
+		this.data[0] = x || 0;
+		this.data[1] = y || 0;
+		this.data[2] = z || 0;
+		this.data[3] = w || 1;
+	}
 }
 
 Vec4.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
 	map : function(func) {
-		func(this.x);
-		func(this.y);
-		func(this.z);
-		func(this.w);
+		this.data[0] = func(this.data[0], 0);
+		this.data[1] = func(this.data[1], 1);
+		this.data[2] = func(this.data[2], 2);
+		this.data[3] = func(this.data[3], 3);
 		return this;
 	},
 	// Homogenizes (sets the fourth element to 1) the current vector and returns a reference
 	homogenize : function() {
-		this.w = 1;
+		this.data[3] = 1;
 		return this;
 	},
 	// Unhomogenizes (sets the fourth element to 0) the current vector and returns a reference
 	unhomogenize : function() {
-		this.w = 0;
+		this.data[3] = 0;
 		return this;
 	},
 	// Homogenizes (sets the fourth element to 1) a copy of the current vector and returns the new vector
 	homogenized : function() {
-		return new Vec4(this.x, this.y, this.z, 1);
+		return new Vec4(this.data[0], this.data[1], this.data[2], 1);
 	},
 	// Unhomogenizes (sets the fourth element to 1) a copy of the current vector and returns the new vector
 	unhomogenized : function() {
-		return new Vec4(this.x, this.y, this.z, 0);
+		return new Vec4(this.data[0], this.data[1], this.data[2], 0);
+	},
+	// If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
+	addeq : function(v) {
+		if (v instanceof Vec4) this.data[0] += v.data[0], this.data[1] += v.data[1], this.data[2] += v.data[2], this.data[3] += v.data[3];
+		else this.data[0] += v, this.data[1] += v, this.data[2] += v, this.data[3] += v;
+		return this;
 	},
 	// If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
 	// a scalar, returns a new vector equal to the vector summed with that scalar
 	add : function(v) {
-		if (v instanceof Vec4) return new Vec4(this.x + v.x, this.y + v.y, this.z + v.z, this.w + v.w);
-		else return new Vec4(this.x + v, this.y + v, this.z + v, this.w + v);
+		return new Vec4(this).addeq(v);
+	},  
+	// If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus with that scalar
+	subeq : function(v) {
+		if (v instanceof Vec4) this.data[0] -= v.data[0], this.data[1] -= v.data[1], this.data[2] -= v.data[2], this.data[3] -= v.data[3];
+		else this.data[0] -= v, this.data[1] -= v, this.data[2] -= v, this.data[3] -= v;
+		return this;
 	}, 
 	// If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
 	// a scalar, returns a new vector equal to the vector minus that scalar
 	sub : function(v) {
-		if (v instanceof Vec4) return new Vec4(this.x - v.x, this.y - v.y, this.z - v.z, this.w - v.w);
-		else return new Vec4(this.x - v, this.y - v, this.z - v, this.w - w);
+		return new Vec4(this).subeq(v);
 	},
 	// Returns a new vector equal to the dot product of this vector and v.
 	dot : function(v) {
-		return new Vec4(this.x * v.x, this.y * v.y, this.z * v.z, this.w * v.w);
+		return new Vec4(this.data[0] * v.data[0], this.data[1] * v.data[1], this.data[2] * v.data[2], this.data[3] * v.data[3]);
 	},
-	// Returns a new vector equal to the scalar multiplication of the vector and the scalar v
+	// If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
+	muleq : function(v) {
+		if (v instanceof Vec4) this.data[0] *= v.data[0], this.data[1] *= v.data[1], this.data[2] *= v.data[2], this.data[3] *= v.data[3];
+		else this.data[0] *= v, this.data[1] *= v, this.data[2] *= v, this.data[3] *= v;
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
 	mul : function(v) {
-		return new Vec4(this.x * v, this.y * v, this.z * v, this.w * v);
+		return new Vec4(this).muleq(v);
 	},
-	// Returns a new vector equal to the scalar division of the vector and the scalar v
+	// If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
+	diveq : function(v) {
+		if (v instanceof Vec4) this.data[0] /= v.data[0], this.data[1] /= v.data[1], this.data[2] /= v.data[2], this.data[3] /= v.data[3];
+		else this.data[0] /= v, this.data[1] /= v, this.data[2] /= v, this.data[3] /= v;
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
 	div : function(v) {
-		return new Vec4(this.x / v, this.y / v, this.z / v, this.w / v);
+		return new Vec4(this).diveq(v);
 	},
 	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
 	magnitude : function() {
@@ -157,7 +312,7 @@ Vec4.prototype = {
 	},
 	// Returns the squared sum of elements of this vector (Euclidean length squared)
 	magnitude2 : function() {
-		return this.x * this.x + this.y * this.y + this.z * this.z + this.w * this.w;
+		return this.data[0] * this.data[0] + this.data[1] * this.data[1] + this.data[2] * this.data[2] + this.data[3] * this.data[3];
 	},
 	// Returns the Euclidean distance between this vector and the vector v
 	distance : function(v) {
@@ -165,16 +320,16 @@ Vec4.prototype = {
 	},
 	// Returns the Euclidean distance squared between this vector and the vector v
 	distance2 : function(v) {
-		return (v.x - this.x) * (v.x - this.x) + (v.y - this.y) * (v.y - this.y) + (v.z - this.z) * (v.z - this.z) 
-			+ (v.w - this.w) * (v.w - this.w);
+		return (v.data[0] - this.data[0]) * (v.data[0] - this.data[0]) + (v.data[1] - this.data[1]) * (v.data[1] - this.data[1]) + (v.data[2] - this.data[2]) * (v.data[2] - this.data[2]) 
+			+ (v.data[3] - this.data[3]) * (v.data[3] - this.data[3]);
 	},
-	// Returns the cross product this vector and the vector v
+	// Returns a new vector equal to the cross product this vector and the vector v
 	cross : function(v) {
-		return new Vec4(this.y * v.z - this.z * v.y, this.z * v.x - this.x * v.z, this.x * v.y - this.y * v.x, 0);
+		return new Vec4(this.data[1] * v.data[2] - this.data[2] * v.data[1], this.data[2] * v.data[0] - this.data[0] * v.data[2], this.data[0] * v.data[1] - this.data[1] * v.data[0], 0);
 	},
 	// Returns true of the elements of this vector and v are equal
 	equals : function(v) {
-		return this.x == v.x && this.y == v.y && this.z == v.z;
+		return this.data[0] == v.data[0] && this.data[1] == v.data[1] && this.data[2] == v.data[2];
 	},
 	// Reflect this vector around normal, assuming this vector is incident to surface and return the outgoing reflected vector
 	reflect : function(n) {
@@ -186,55 +341,103 @@ Vec4.prototype = {
 // ----------
 // Constructs a three element vector class with common math operations
 function Vec3(x, y, z) {
-	this.x = x || 0;
-	this.y = y || 0;
-	this.z = z || 0;
+	this.data = new Float32Array(3);
+	if(x instanceof Vec3) {
+		this.data.set(x.data);
+	} else if(x instanceof Array || x instanceof Float32Array) {
+		this.data.set(x);
+	} else {
+		this.data[0] = x || 0;
+		this.data[1] = y || 0;
+		this.data[2] = z || 0;
+	}
 }
 
 Vec3.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
 	map : function(func) {
-		func(this.x);
-		func(this.y);
-		func(this.z);
+		this.data[0] = func(this.data[0], 0);
+		this.data[1] = func(this.data[1], 1);
+		this.data[2] = func(this.data[2], 2);
 		return this;
 	},
+	// If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
+	addeq : function(v) {
+		if (v instanceof Vec3) this.data[0] += v.data[0], this.data[1] += v.data[1], this.data[2] += v.data[2];
+		else this.data[0] += v, this.data[1] += v, this.data[2] += v;
+		return this;
+	},
+	// If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
 	add : function(v) {
-		if (v instanceof Vec3) return new Vec3(this.x + v.x, this.y + v.y, this.z + v.z);
-		else return new Vec3(this.x + v, this.y + v, this.z + v);
+		return new Vec3(this).addeq(v);
+	},  
+	// If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus with that scalar
+	subeq : function(v) {
+		if (v instanceof Vec3) this.data[0] -= v.data[0], this.data[1] -= v.data[1], this.data[2] -= v.data[2];
+		else this.data[0] -= v, this.data[1] -= v, this.data[2] -= v;
+		return this;
 	}, 
+	// If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus that scalar
 	sub : function(v) {
-		if (v instanceof Vec3) return new Vec3(this.x - v.x, this.y - v.y, this.z - v.z);
-		else return new Vec3(this.x - v, this.y - v, this.z - v);
+		return new Vec3(this).subeq(v);
 	},
+	// Returns a new vector equal to the dot product of this vector and v.
 	dot : function(v) {
-		return new Vec3(this.x * v.x, this.y * v.y, this.z * v.z);
+		return new Vec3(this.data[0] * v.data[0], this.data[1] * v.data[1], this.data[2] * v.data[2]);
 	},
+	// If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
+	muleq : function(v) {
+		if (v instanceof Vec3) this.data[0] *= v.data[0], this.data[1] *= v.data[1], this.data[2] *= v.data[2];
+		else this.data[0] *= v, this.data[1] *= v, this.data[2] *= v;
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
 	mul : function(v) {
-		return new Vec3(this.x * v, this.y * v, this.z * v);
+		return new Vec3(this).muleq(v);
 	},
+	// If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
+	diveq : function(v) {
+		if (v instanceof Vec3) this.data[0] /= v.data[0], this.data[1] /= v.data[1], this.data[2] /= v.data[2];
+		else this.data[0] /= v, this.data[1] /= v, this.data[2] /= v;
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
 	div : function(v) {
-		return new Vec3(this.x / v, this.y / v, this.z / v);
+		return new Vec3(this).diveq(v);
 	},
+	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
 	magnitude : function() {
 		return Math.sqrt(this.magnitude2());
 	},
+	// Returns the squared sum of elements of this vector (Euclidean length squared)
 	magnitude2 : function() {
-		return this.x * this.x + this.y * this.y + this.z * this.z;
+		return this.data[0] * this.data[0] + this.data[1] * this.data[1] + this.data[2] * this.data[2];
 	},
+	// Returns the Euclidean distance between this vector and the vector v
 	distance : function(v) {
 		return Math.sqrt(this.distance2(v));
 	},
+	// Returns the Euclidean distance squared between this vector and the vector v
 	distance2 : function(v) {
-		return (v.x - this.x) * (v.x - this.x) + (v.y - this.y) * (v.y - this.y) + (v.z - this.z) * (v.z - this.z);
+		return (v.data[0] - this.data[0]) * (v.data[0] - this.data[0]) + (v.data[1] - this.data[1]) * (v.data[1] - this.data[1]) + (v.data[2] - this.data[2]) * (v.data[2] - this.data[2]);
 	},
+	// Returns a new vector equal to the cross product this vector and the vector v
 	cross : function(v) {
-		return new Vec3(this.y * v.z - this.z * v.y, this.z * v.x - this.x * v.z, this.x * v.y - this.y * v.x);
+		return new Vec3(this.data[1] * v.data[2] - this.data[2] * v.data[1], this.data[2] * v.data[0] - this.data[0] * v.data[2], this.data[0] * v.data[1] - this.data[1] * v.data[0]);
 	},
+	// Returns true of the elements of this vector and v are equal
 	equals : function(v) {
-		return this.x == v.x && this.y == v.y && this.z == v.z;
+		return this.data[0] == v.data[0] && this.data[1] == v.data[1] && this.data[2] == v.data[2];
 	},
-	// reflect this vector around normal, assuming this vector is incident to surface
+	// Reflect this vector around normal, assuming this vector is incident to surface
 	reflect : function(n) {
 		return this.sub(normal.dot(this.dot(normal).mul(2)));
 	}
@@ -244,48 +447,95 @@ Vec3.prototype = {
 // ----------
 // Constructs a three element vector class with common math operations
 function Vec2(x, y) {
-	this.x = x || 0;
-	this.y = y || 0;
+	this.data = new Float32Array(2);
+	if(x instanceof Vec2) {
+		this.data.set(x.data);
+	} else if(x instanceof Array || x instanceof Float32Array) {
+		this.data.set(x);
+	} else {
+		this.data[0] = x || 0;
+		this.data[1] = y || 0;
+	}
 }
 
 Vec2.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
 	map : function(func) {
-		func(this.x);
-		func(this.y);
+		this.data[0] = func(this.data[0], 0);
+		this.data[1] = func(this.data[1], 1);
 		return this;
 	},
+	// If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
+	addeq : function(v) {
+		if (v instanceof Vec2) this.data[0] += v.data[0], this.data[1] += v.data[1];
+		else this.data[0] += v, this.data[1] += v;
+		return this;
+	},
+	// If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
 	add : function(v) {
-		if (v instanceof Vec2) return new Vec2(this.x + v.x, this.y + v.y);
-		else return new Vec2(this.x + v, this.y + v);
+		return new Vec2(this).addeq(v);
+	},  
+	// If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus with that scalar
+	subeq : function(v) {
+		if (v instanceof Vec2) this.data[0] -= v.data[0], this.data[1] -= v.data[1];
+		else this.data[0] -= v, this.data[1] -= v;
+		return this;
 	}, 
+	// If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus that scalar
 	sub : function(v) {
-		if (v instanceof Vec2) return new Vec2(this.x - v.x, this.y - v.y);
-		else return new Vec2(this.x - v, this.y - v);
+		return new Vec2(this).subeq(v);
 	},
+	// Returns a new vector equal to the dot product of this vector and v.
 	dot : function(v) {
-		return new Vec2(this.x * v.x, this.y * v.y);
+		return new Vec2(this.data[0] * v.data[0], this.data[1] * v.data[1]);
 	},
+	// If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
+	muleq : function(v) {
+		if (v instanceof Vec2) this.data[0] *= v.data[0], this.data[1] *= v.data[1];
+		else this.data[0] *= v, this.data[1] *= v;
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
 	mul : function(v) {
-		return new Vec2(this.x * v, this.y * v);
+		return new Vec2(this).muleq(v);
 	},
+	// If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
+	diveq : function(v) {
+		if (v instanceof Vec2) this.data[0] /= v.data[0], this.data[1] /= v.data[1];
+		else this.data[0] /= v, this.data[1] /= v;
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
 	div : function(v) {
-		return new Vec2(this.x / v, this.y / v);
+		return new Vec2(this).diveq(v);
 	},
+	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
 	magnitude : function() {
 		return Math.sqrt(this.magnitude2());
 	},
+	// Returns the squared sum of elements of this vector (Euclidean length squared)
 	magnitude2 : function() {
-		return this.x * this.x + this.y * this.y;
+		return this.data[0] * this.data[0] + this.data[1] * this.data[1];
 	},
+	// Returns the Euclidean distance between this vector and the vector v
 	distance : function(v) {
 		return Math.sqrt(this.distance2(v));
 	},
+	// Returns the Euclidean distance squared between this vector and the vector v
 	distance2 : function(v) {
-		return (v.x - this.x) * (v.x - this.x) + (v.y - this.y) * (v.y - this.y);
+		return (v.data[0] - this.data[0]) * (v.data[0] - this.data[0]) + (v.data[1] - this.data[1]) * (v.data[1] - this.data[1]);
 	},
+	// Returns true of the elements of this vector and v are equal
 	equals : function(v) {
-		return this.x == v.x && this.y == v.y;
+		return this.data[0] == v.data[0] && this.data[1] == v.data[1];
 	},
 }
 
@@ -307,15 +557,11 @@ function GL(canvas) {
 		throw {name : "GLError", message : "Error initializing GL context."};
 	}
 
-	this.gl.clearColor(0.0, 0.0, 0.0, 1.0);  	// Clear to black, fully opaque
+	this.gl.clearColor(1.0, 1.0, 1.0, 1.0);  	// Clear to black, fully opaque
     this.gl.clearDepth(1.0);                 	// Clear everything
     this.gl.enable(this.gl.DEPTH_TEST);           // Enable depth testing
     this.gl.depthFunc(this.gl.LEQUAL);            // Near things obscure far things
 	this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-}
-
-function Shader() {
-
 }
 
 GL.prototype = {
@@ -326,8 +572,8 @@ GL.prototype = {
 	},
 	// Resizes the canvas to the specified dimenion (vec2)
 	resize : function(dim) {
-		this.canvas.width = dim.x;
-		this.canvas.height = dim.y;
+		this.canvas.width = dim.data[0];
+		this.canvas.height = dim.data[1];
 	},
 	// Loads (compile, attach and links) a vertex and fragment shader from scripts with the given ids.  Returns the shader program.
 	loadShaderFromScripts :  function(vertex_id, fragment_id) {
@@ -371,6 +617,10 @@ GL.prototype = {
 		}
 
 		return shader;
+	},
+	// Binds a uniform value to the current shader, infers the value type
+	bindUniform : function(name, value) {
+		throw {name : "NotImplementedError", message : "todo"};
 	}
 
 }
