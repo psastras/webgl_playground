@@ -1,7 +1,19 @@
 <html>
 <head>
 <script src="../../core/webgl.js"></script>
+<script id="2d-vertex-shader" type="x-shader/x-vertex">
+attribute vec2 a_position;
 
+void main() {
+  gl_Position = vec4(a_position, 0, 1);
+}
+</script>
+
+<script id="2d-fragment-shader" type="x-shader/x-fragment">
+void main() {
+  gl_FragColor = vec4(0,1,0,1);  // green
+}
+</script>
 
 </head>
 <body>
@@ -10,11 +22,17 @@
  </canvas>
 <script type="text/javascript">
 	var canvas = document.getElementById("glcanvas");
-	var wgl = new WGL(canvas);
-	console.log(wgl.context.success());
-	console.log(wgl.gl());
-	var v0 = new vec3(1, 9);
-	console.log(v0.dot(v0));
+	var wgl = new GL(canvas);
+	console.log(wgl.loadShaderFromScripts("2d-vertex-shader", "2d-fragment-shader"));
+
+	wgl.resize(new Vec2(900, 500));
+
+	function draw() {
+		wgl.gl.clear(wgl.gl.COLOR_BUFFER_BIT | wgl.gl.DEPTH_BUFFER_BIT);
+	}
+
+	wgl.drawLoop(draw, 30);
+
 </script>
 </body>
 </html>
