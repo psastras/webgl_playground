@@ -337,48 +337,6 @@ Vec4.prototype = {</pre></div></div>
             <div class="content"><div class='highlight'><pre>	unhomogenize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
 		<span class="hljs-keyword">this</span>.w = <span class="hljs-number">0</span>;
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-	},
-	homogenized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x, <span class="hljs-keyword">this</span>.y, <span class="hljs-keyword">this</span>.z, <span class="hljs-number">1</span>);
-	},
-	unhomogenized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x, <span class="hljs-keyword">this</span>.y, <span class="hljs-keyword">this</span>.z, <span class="hljs-number">0</span>);
-	},
-	add : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec4) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x + v.x, <span class="hljs-keyword">this</span>.y + v.y, <span class="hljs-keyword">this</span>.z + v.z, <span class="hljs-keyword">this</span>.w + v.w);
-		<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x + v, <span class="hljs-keyword">this</span>.y + v, <span class="hljs-keyword">this</span>.z + v, <span class="hljs-keyword">this</span>.w + v);
-	}, 
-	sub : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec4) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x - v.x, <span class="hljs-keyword">this</span>.y - v.y, <span class="hljs-keyword">this</span>.z - v.z, <span class="hljs-keyword">this</span>.w - v.w);
-		<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x - v, <span class="hljs-keyword">this</span>.y - v, <span class="hljs-keyword">this</span>.z - v, <span class="hljs-keyword">this</span>.w - w);
-	},
-	dot : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x * v.x, <span class="hljs-keyword">this</span>.y * v.y, <span class="hljs-keyword">this</span>.z * v.z, <span class="hljs-keyword">this</span>.w * v.w);
-	},
-	mul : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x * v, <span class="hljs-keyword">this</span>.y * v, <span class="hljs-keyword">this</span>.z * v, <span class="hljs-keyword">this</span>.w * v);
-	},
-	div : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x / v, <span class="hljs-keyword">this</span>.y / v, <span class="hljs-keyword">this</span>.z / v, <span class="hljs-keyword">this</span>.w / v);
-	},
-	magnitude : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.magnitude2());
-	},
-	magnitude2 : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x * <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.y * <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.z * <span class="hljs-keyword">this</span>.z + <span class="hljs-keyword">this</span>.w * <span class="hljs-keyword">this</span>.w;
-	},
-	distance : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.distance2(v));
-	},
-	distance2 : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> (v.x - <span class="hljs-keyword">this</span>.x) * (v.x - <span class="hljs-keyword">this</span>.x) + (v.y - <span class="hljs-keyword">this</span>.y) * (v.y - <span class="hljs-keyword">this</span>.y) + (v.z - <span class="hljs-keyword">this</span>.z) * (v.z - <span class="hljs-keyword">this</span>.z) 
-			+ (v.w - <span class="hljs-keyword">this</span>.w) * (v.w - <span class="hljs-keyword">this</span>.w);
-	},
-	cross : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.y * v.z - <span class="hljs-keyword">this</span>.z * v.y, <span class="hljs-keyword">this</span>.z * v.x - <span class="hljs-keyword">this</span>.x * v.z, <span class="hljs-keyword">this</span>.x * v.y - <span class="hljs-keyword">this</span>.y * v.x, <span class="hljs-number">0</span>);
-	},
-	equals : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x == v.x &amp;&amp; <span class="hljs-keyword">this</span>.y == v.y &amp;&amp; <span class="hljs-keyword">this</span>.z == v.z;
 	},</pre></div></div>
             
         </li>
@@ -390,7 +348,233 @@ Vec4.prototype = {</pre></div></div>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>reflect this vector around normal, assuming this vector is incident to surface</p>
+              <p>Homogenizes (sets the fourth element to 1) a copy of the current vector and returns the new vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	homogenized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x, <span class="hljs-keyword">this</span>.y, <span class="hljs-keyword">this</span>.z, <span class="hljs-number">1</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Unhomogenizes (sets the fourth element to 1) a copy of the current vector and returns the new vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	unhomogenized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x, <span class="hljs-keyword">this</span>.y, <span class="hljs-keyword">this</span>.z, <span class="hljs-number">0</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector summed with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	add : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec4) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x + v.x, <span class="hljs-keyword">this</span>.y + v.y, <span class="hljs-keyword">this</span>.z + v.z, <span class="hljs-keyword">this</span>.w + v.w);
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x + v, <span class="hljs-keyword">this</span>.y + v, <span class="hljs-keyword">this</span>.z + v, <span class="hljs-keyword">this</span>.w + v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector minus that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	sub : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec4) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x - v.x, <span class="hljs-keyword">this</span>.y - v.y, <span class="hljs-keyword">this</span>.z - v.z, <span class="hljs-keyword">this</span>.w - v.w);
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x - v, <span class="hljs-keyword">this</span>.y - v, <span class="hljs-keyword">this</span>.z - v, <span class="hljs-keyword">this</span>.w - w);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the dot product of this vector and v.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	dot : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x * v.x, <span class="hljs-keyword">this</span>.y * v.y, <span class="hljs-keyword">this</span>.z * v.z, <span class="hljs-keyword">this</span>.w * v.w);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the scalar multiplication of the vector and the scalar v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	mul : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x * v, <span class="hljs-keyword">this</span>.y * v, <span class="hljs-keyword">this</span>.z * v, <span class="hljs-keyword">this</span>.w * v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the scalar division of the vector and the scalar v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	div : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.x / v, <span class="hljs-keyword">this</span>.y / v, <span class="hljs-keyword">this</span>.z / v, <span class="hljs-keyword">this</span>.w / v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Returns the square root of the squared sum of elements of this vector (Euclidean length)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	magnitude : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.magnitude2());
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Returns the squared sum of elements of this vector (Euclidean length squared)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	magnitude2 : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x * <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.y * <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.z * <span class="hljs-keyword">this</span>.z + <span class="hljs-keyword">this</span>.w * <span class="hljs-keyword">this</span>.w;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Returns the Euclidean distance between this vector and the vector v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	distance : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.distance2(v));
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Returns the Euclidean distance squared between this vector and the vector v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	distance2 : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> (v.x - <span class="hljs-keyword">this</span>.x) * (v.x - <span class="hljs-keyword">this</span>.x) + (v.y - <span class="hljs-keyword">this</span>.y) * (v.y - <span class="hljs-keyword">this</span>.y) + (v.z - <span class="hljs-keyword">this</span>.z) * (v.z - <span class="hljs-keyword">this</span>.z) 
+			+ (v.w - <span class="hljs-keyword">this</span>.w) * (v.w - <span class="hljs-keyword">this</span>.w);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Returns the cross product this vector and the vector v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	cross : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec4(<span class="hljs-keyword">this</span>.y * v.z - <span class="hljs-keyword">this</span>.z * v.y, <span class="hljs-keyword">this</span>.z * v.x - <span class="hljs-keyword">this</span>.x * v.z, <span class="hljs-keyword">this</span>.x * v.y - <span class="hljs-keyword">this</span>.y * v.x, <span class="hljs-number">0</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Returns true of the elements of this vector and v are equal</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	equals : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x == v.x &amp;&amp; <span class="hljs-keyword">this</span>.y == v.y &amp;&amp; <span class="hljs-keyword">this</span>.z == v.z;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Reflect this vector around normal, assuming this vector is incident to surface and return the outgoing reflected vector</p>
 
             </div>
             
@@ -402,11 +586,11 @@ Vec4.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h2 id="vec3">Vec3</h2>
 <p>Constructs a three element vector class with common math operations</p>
@@ -424,11 +608,11 @@ Vec3.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Applies the input function to each element of the vector and returns a reference to this vector</p>
 
@@ -479,11 +663,11 @@ Vec3.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>reflect this vector around normal, assuming this vector is incident to surface</p>
 
@@ -497,11 +681,11 @@ Vec3.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <h2 id="vec2">Vec2</h2>
 <p>Constructs a three element vector class with common math operations</p>
@@ -518,11 +702,11 @@ Vec2.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Applies the input function to each element of the vector and returns a reference to this vector</p>
 
@@ -570,11 +754,11 @@ Vec2.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <h2 id="gl">gl</h2>
 <p>Constructs a GL instance responsible for managing a context associated with a canvas</p>
@@ -582,6 +766,9 @@ Vec2.prototype = {</pre></div></div>
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">GL</span><span class="hljs-params">(canvas)</span> {</span>
+	
+	<span class="hljs-keyword">this</span>.canvas = canvas;
+
 	<span class="hljs-keyword">try</span> {
 		<span class="hljs-keyword">this</span>.gl = canvas.getContext(<span class="hljs-string">"webgl"</span>) || canvas.getContext(<span class="hljs-string">"experimental-webgl"</span>);
 	}
@@ -592,15 +779,70 @@ Vec2.prototype = {</pre></div></div>
 	<span class="hljs-keyword">if</span>(!<span class="hljs-keyword">this</span>.gl) {
 		<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"GLError"</span>, message : <span class="hljs-string">"Error initializing GL context."</span>};
 	}
+
+	<span class="hljs-keyword">this</span>.gl.clearColor(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);  	<span class="hljs-comment">// Clear to black, fully opaque</span>
+    <span class="hljs-keyword">this</span>.gl.clearDepth(<span class="hljs-number">1.0</span>);                 	<span class="hljs-comment">// Clear everything</span>
+    <span class="hljs-keyword">this</span>.gl.enable(<span class="hljs-keyword">this</span>.gl.DEPTH_TEST);           <span class="hljs-comment">// Enable depth testing</span>
+    <span class="hljs-keyword">this</span>.gl.depthFunc(<span class="hljs-keyword">this</span>.gl.LEQUAL);            <span class="hljs-comment">// Near things obscure far things</span>
+	<span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT | <span class="hljs-keyword">this</span>.gl.DEPTH_BUFFER_BIT);
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Shader</span><span class="hljs-params">()</span> {</span>
 
 }
 
-GL.prototype = {
+GL.prototype = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>Sets the draw loop function to repeat at the specified interval in milliseconds</p>
 
-	loadShaderFromScripts :  <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(vertex_id, fragment_id)</span> {</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	drawLoop : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(func, interval)</span> {</span>
+		interval = interval || <span class="hljs-number">30</span>;
+		setInterval(func(), interval);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Resizes the canvas to the specified dimenion (vec2)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	resize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(dim)</span> {</span>
+		<span class="hljs-keyword">this</span>.canvas.width = dim.x;
+		<span class="hljs-keyword">this</span>.canvas.height = dim.y;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Loads (compile, attach and links) a vertex and fragment shader from scripts with the given ids.  Returns the shader program.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	loadShaderFromScripts :  <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(vertex_id, fragment_id)</span> {</span>
 		<span class="hljs-keyword">var</span> vertex_shader = <span class="hljs-keyword">this</span>.gl.createShader(<span class="hljs-keyword">this</span>.gl.VERTEX_SHADER);
 		<span class="hljs-keyword">if</span>(!vertex_shader) <span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"GLError"</span>, message : <span class="hljs-string">"Error creating vertex shader."</span>};
 		<span class="hljs-keyword">this</span>.gl.shaderSource(vertex_shader, document.getElementById(vertex_id).innerHTML);
