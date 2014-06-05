@@ -95,8 +95,9 @@ GLError.prototype = <span class="hljs-built_in">Error</span>.prototype;</pre></d
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Mat4x4</span><span class="hljs-params">(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p)</span> {</span>
-	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(<span class="hljs-number">16</span>);
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Mat4x4</span><span class="hljs-params">(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, type)</span> {</span>
+	<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(<span class="hljs-number">16</span>);
 	<span class="hljs-keyword">if</span>(a <span class="hljs-keyword">instanceof</span> Mat4x4) <span class="hljs-keyword">this</span>.data.set(a.data);
 	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>) <span class="hljs-keyword">this</span>.data.set(a);
 	<span class="hljs-keyword">else</span> <span class="hljs-keyword">this</span>.data.set([a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p]);
@@ -430,8 +431,9 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec4</span><span class="hljs-params">(x, y, z, w)</span> {</span>
-	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(<span class="hljs-number">4</span>);
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec4</span><span class="hljs-params">(x, y, z, w, type)</span> {</span>
+	<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(<span class="hljs-number">4</span>);
 	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vec4) {
 		<span class="hljs-keyword">this</span>.data.set(x.data);
 	} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> || x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Float32Array</span>) {
@@ -947,8 +949,9 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec3</span><span class="hljs-params">(x, y, z)</span> {</span>
-	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(<span class="hljs-number">3</span>);
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec3</span><span class="hljs-params">(x, y, z, type)</span> {</span>
+	<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(<span class="hljs-number">3</span>);
 	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vec3) {
 		<span class="hljs-keyword">this</span>.data.set(x.data);
 	} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> || x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Float32Array</span>) {
@@ -1378,8 +1381,9 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec2</span><span class="hljs-params">(x, y)</span> {</span>
-	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(<span class="hljs-number">2</span>);
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec2</span><span class="hljs-params">(x, y, type)</span> {</span>
+	<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+	<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(<span class="hljs-number">2</span>);
 	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vec2) {
 		<span class="hljs-keyword">this</span>.data.set(x.data);
 	} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> || x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Float32Array</span>) {
@@ -1729,7 +1733,7 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-85">&#182;</a>
               </div>
-              <h2 id="quaternion">Quaternion</h2>
+              <h2 id="vec">Vec</h2>
 
             </div>
             
@@ -1741,6 +1745,364 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <p>Constructs an n element vector class with common math operations</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vec</span><span class="hljs-params">(x, type)</span> {</span>
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vec) {
+		<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+		<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(x.length);
+		<span class="hljs-keyword">this</span>.data.set(x.data);
+	} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> || x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Float32Array</span>) {
+		<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+		<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(x.length);
+		<span class="hljs-keyword">this</span>.data.set(x);
+	}  <span class="hljs-keyword">else</span> {
+		<span class="hljs-keyword">this</span>.type = type || <span class="hljs-built_in">Float32Array</span>;
+		<span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.type(x);
+	}
+}
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec.prototype, <span class="hljs-string">'length'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data.length; },
+});
+
+Vec.prototype = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p>Applies the input function to each element of the vector and returns a reference to this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	map : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(func)</span> {</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-keyword">this</span>.data.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) <span class="hljs-keyword">this</span>.data[i] = func(<span class="hljs-keyword">this</span>.data[i], i);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	},
+	reduce : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(func, initial)</span> {</span>
+		<span class="hljs-keyword">var</span> previous_value = initial || <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-keyword">this</span>.data.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) previous_value = func(previous_value, <span class="hljs-keyword">this</span>.data[i], i);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector summed with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	addeq : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec) <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] + v.data[i]; } );
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] + v; } );
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector summed with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	add : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec(<span class="hljs-keyword">this</span>).addeq(v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector minus with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	subeq : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec) <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] - v.data[i]; } );
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] - v; } );
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector minus that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	sub : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec(<span class="hljs-keyword">this</span>).subeq(v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the dot product of this vector and v.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	dot : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mul(v).reduce(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(previous, current, i)</span> {</span> <span class="hljs-keyword">return</span> previous + current; }, <span class="hljs-number">0</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector multiplied with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	muleq : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec) <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] * v.data[i]; } );
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] * v; } );
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-94">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector multiplied with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	mul : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec(<span class="hljs-keyword">this</span>).muleq(v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-95">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-95">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector divided with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	diveq : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">if</span> (v <span class="hljs-keyword">instanceof</span> Vec) <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] / v.data[i]; } );
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[i] / v; } );
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-96">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-96">&#182;</a>
+              </div>
+              <p>If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
+a scalar, returns a new vector equal to the vector divided with that scalar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	div : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec(<span class="hljs-keyword">this</span>).diveq(v);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-97">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <p>Returns a reference to this vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.diveq(<span class="hljs-keyword">this</span>.magnitude());
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <p>Returns a new vector equal to the normalized (unit length) of this vector</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	normalized : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vec(<span class="hljs-keyword">this</span>).normalize();
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
+              </div>
+              <p>Returns the square root of the squared sum of elements of this vector (Euclidean length)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	magnitude : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.magnitude2());
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-100">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-100">&#182;</a>
+              </div>
+              <p>Returns the squared sum of elements of this vector (Euclidean length squared)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	magnitude2 : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(previous, current, i)</span> {</span> <span class="hljs-keyword">return</span> previous + current * current; }, <span class="hljs-number">0</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-101">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-101">&#182;</a>
+              </div>
+              <p>Returns the Euclidean distance between this vector and the vector v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	distance : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.distance2(v));
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-102">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-102">&#182;</a>
+              </div>
+              <p>Returns the Euclidean distance squared between this vector and the vector v</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	distance2 : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(previous, current, i)</span> {</span> <span class="hljs-keyword">return</span> previous + (current - v[i]) * (current - v[i]); }, <span class="hljs-number">0</span>);
+	},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-103">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-103">&#182;</a>
+              </div>
+              <p>Returns true of the elements of this vector and v are equal</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	equals : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span> {</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x, i)</span> {</span> <span class="hljs-keyword">if</span>(x != m.data[i]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; }) || <span class="hljs-literal">true</span>;
+	},
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-104">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-104">&#182;</a>
+              </div>
+              <h2 id="quaternion">Quaternion</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-105">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
               
             </div>
@@ -1808,11 +2170,11 @@ Quaternion.prototype.rotatedVector = <span class="hljs-function"><span class="hl
         </li>
         
         
-        <li id="section-87">
+        <li id="section-106">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-87">&#182;</a>
+                <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
               <h2 id="gl">gl</h2>
 
@@ -1821,11 +2183,11 @@ Quaternion.prototype.rotatedVector = <span class="hljs-function"><span class="hl
         </li>
         
         
-        <li id="section-88">
+        <li id="section-107">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
+                <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
               <p>Constructs a GL instance responsible for managing a context associated with a canvas</p>
 
@@ -1853,16 +2215,17 @@ Quaternion.prototype.rotatedVector = <span class="hljs-function"><span class="hl
 	<span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT | <span class="hljs-keyword">this</span>.gl.DEPTH_BUFFER_BIT);
 }
 
+
 GL.prototype = {</pre></div></div>
             
         </li>
         
         
-        <li id="section-89">
+        <li id="section-108">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-89">&#182;</a>
+                <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
               <p>Sets the draw loop function to repeat at the specified interval in milliseconds</p>
 
@@ -1876,11 +2239,11 @@ GL.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-90">
+        <li id="section-109">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-90">&#182;</a>
+                <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
               <p>Resizes the canvas to the specified dimenion (vec2)</p>
 
@@ -1889,16 +2252,17 @@ GL.prototype = {</pre></div></div>
             <div class="content"><div class='highlight'><pre>	resize : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(dim)</span> {</span>
 		<span class="hljs-keyword">this</span>.canvas.width = dim.data[<span class="hljs-number">0</span>];
 		<span class="hljs-keyword">this</span>.canvas.height = dim.data[<span class="hljs-number">1</span>];
+		<span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.canvas.width, <span class="hljs-keyword">this</span>.canvas.height);
 	},</pre></div></div>
             
         </li>
         
         
-        <li id="section-91">
+        <li id="section-110">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-110">&#182;</a>
               </div>
               <p>Loads (compile, attach and links) a vertex and fragment shader from scripts with the given ids.  Returns the shader program.</p>
 
@@ -1939,8 +2303,19 @@ GL.prototype = {</pre></div></div>
 
 		<span class="hljs-keyword">var</span> shader = {
 			program : shader_program,
+			gl : <span class="hljs-keyword">this</span>.gl,
 			bind : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-				<span class="hljs-keyword">this</span>.gl.useProgram(program);
+				<span class="hljs-keyword">this</span>.gl.useProgram(<span class="hljs-keyword">this</span>.program);
+			}, 
+
+			bindUniform : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(name, value)</span> {</span>
+				<span class="hljs-keyword">var</span> uniformLocation = <span class="hljs-keyword">this</span>.gl.getUniformLocation(program, name);
+				<span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> Mat4x4)
+					<span class="hljs-keyword">this</span>.gl.uniformMatrix4fv(<span class="hljs-literal">false</span>, value.data);
+				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> Vec4)
+					<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"NotImplementedError"</span>, message : <span class="hljs-string">"todo"</span>};
+				<span class="hljs-keyword">else</span>
+					<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"NotImplementedError"</span>, message : <span class="hljs-string">"todo"</span>};
 			}
 		}
 
@@ -1950,20 +2325,204 @@ GL.prototype = {</pre></div></div>
         </li>
         
         
-        <li id="section-92">
+        <li id="section-111">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+                <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
               <p>Binds a uniform value to the current shader, infers the value type</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	bindUniform : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(name, value)</span> {</span>
-		<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"NotImplementedError"</span>, message : <span class="hljs-string">"todo"</span>};
-	}
+            <div class="content"><div class='highlight'><pre>
 
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-112">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-112">&#182;</a>
+              </div>
+              <h2 id="camera">Camera</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-113">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-113">&#182;</a>
+              </div>
+              <p>Constructs a camera </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Camera</span><span class="hljs-params">(gl)</span> {</span>
+	<span class="hljs-keyword">this</span>.mat = <span class="hljs-keyword">new</span> Mat4x4();
+}
+
+OrthoCamera.prototype = <span class="hljs-keyword">new</span> Camera();
+OrthoCamera.prototype.constructor = OrthoCamera;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">OrthoCamera</span><span class="hljs-params">(gl, left, right, bottom, top, near, far)</span> {</span>
+	Camera.call(<span class="hljs-keyword">this</span>, gl);
+
+	left = left || -<span class="hljs-number">1</span>;
+	right = right || -<span class="hljs-number">1</span>;
+	bottom = bottom || -<span class="hljs-number">1</span>;
+	top = top || -<span class="hljs-number">1</span>;
+	near = near || -<span class="hljs-number">1</span>;
+	far = far || -<span class="hljs-number">1</span>;
+
+	<span class="hljs-keyword">this</span>.mat.data.set([
+		<span class="hljs-number">2</span> / (right - left), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -(right + left) / (right - left),
+		<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, (-top + bottom) / (top - bottom),
+		<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">2</span> / (far - near), -(far + near) / (far - near),
+		<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+		]);
+}
+
+PerspectiveCamera.prototype = <span class="hljs-keyword">new</span> Camera();
+PerspectiveCamera.prototype.constructor = PerspectiveCamera;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PerspectiveCamera</span><span class="hljs-params">(gl)</span> {</span>
+	<span class="hljs-keyword">throw</span> {name : <span class="hljs-string">"NotImplementedError"</span>, message : <span class="hljs-string">"todo"</span>};
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-114">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-114">&#182;</a>
+              </div>
+              <h2 id="primitive-factory">Primitive Factory</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p>Defines some commonly used primitives</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrimitiveFactory</span><span class="hljs-params">()</span> {</span>}
+PrimitiveFactory.Quad = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+			<span class="hljs-keyword">this</span>.vertices = {
+				id : -<span class="hljs-number">1</span>, 
+				attribute : <span class="hljs-string">"vtx_pos"</span>,
+				vec : <span class="hljs-keyword">new</span> Vec([   
+					<span class="hljs-number">1.0</span>,  <span class="hljs-number">1.0</span>,  <span class="hljs-number">0.0</span>,
+					-<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>,  <span class="hljs-number">0.0</span>,
+					<span class="hljs-number">1.0</span>,  -<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>,
+					-<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>], <span class="hljs-built_in">Float32Array</span>),
+				compile : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx, draw_mode)</span> {</span>
+					draw_mode = draw_mode || ctx.gl.STATIC_DRAW;
+					<span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.id &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">this</span>.id = ctx.gl.createBuffer();
+					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, <span class="hljs-keyword">this</span>.id);
+					ctx.gl.bufferData(ctx.gl.ARRAY_BUFFER, <span class="hljs-keyword">this</span>.vec.data, draw_mode);
+				},
+				bind : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx, program)</span> {</span>
+					<span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.id &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">this</span>.compile(ctx);
+					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, <span class="hljs-keyword">this</span>.id);
+					<span class="hljs-keyword">var</span> attribute_location = ctx.gl.getAttribLocation(program, <span class="hljs-keyword">this</span>.attribute);
+					ctx.gl.enableVertexAttribArray(attribute_location);
+					ctx.gl.vertexAttribPointer(attribute_location, 
+						<span class="hljs-number">3</span>, ctx.gl.FLOAT, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+				}
+			},
+			<span class="hljs-keyword">this</span>.indices = {
+				id : -<span class="hljs-number">1</span>,
+				vec: <span class="hljs-keyword">new</span> Vec([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-built_in">Uint16Array</span>),
+				compile : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx, draw_mode)</span> {</span>
+					draw_mode = draw_mode || ctx.gl.STATIC_DRAW;
+					<span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.id &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">this</span>.id = ctx.gl.createBuffer();
+					ctx.gl.bindBuffer(ctx.gl.ELEMENT_ARRAY_BUFFER, <span class="hljs-keyword">this</span>.id);
+					ctx.gl.bufferData(ctx.gl.ELEMENT_ARRAY_BUFFER, <span class="hljs-keyword">this</span>.vec.data, draw_mode);
+				},
+				bind : <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx)</span> {</span>
+					<span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.id &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">this</span>.compile(ctx);
+					ctx.gl.bindBuffer(ctx.gl.ELEMENT_ARRAY_BUFFER, <span class="hljs-keyword">this</span>.id);
+				}
+			},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-116">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <p>texcoords : new Vec([0, 0,
+                     0, 1,
+                     1, 1,
+                     0, 1], Float32Array),
+normals : new Vec([0, 0, 1,
+                   0, 0, 1,
+                   0, 0, 1,
+                   0, 0, 1], Float32Array),</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+			<span class="hljs-keyword">this</span>.compile = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx, draw_mode)</span> {</span>
+				<span class="hljs-keyword">this</span>.vertices.compile(ctx, draw_mode);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
+              </div>
+              <p>this.indices.compile(ctx, draw_mode);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			},
+			<span class="hljs-keyword">this</span>.draw = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ctx, program)</span> {</span>
+				<span class="hljs-keyword">this</span>.vertices.bind(ctx, program);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-118">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-118">&#182;</a>
+              </div>
+              <p>this.indices.bind(ctx, program);
+ctx.gl.drawElements(ctx.gl.TRIANGLES, this.indices.vec.length / 3, ctx.gl.UNSIGNED_SHORT, 0);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				ctx.gl.drawArrays(ctx.gl.TRIANGLE_STRIP, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>);
+			}
+		});
+	
 }</pre></div></div>
             
         </li>
