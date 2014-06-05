@@ -444,6 +444,66 @@ a scalar, returns a new matrix equal to the element wise matrix division with th
 	}
 }
 
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'x'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'y'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'z'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'w'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'r'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'g'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'b'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'a'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'s'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'t'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'p'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec4.prototype, <span class="hljs-string">'q'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">3</span>] = x; }
+});
+
 Vec4.prototype = {</pre></div></div>
             
         </li>
@@ -900,6 +960,53 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
 	}
 }
 
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'x'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'y'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'z'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'r'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'g'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'b'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'s'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'t'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec3.prototype, <span class="hljs-string">'q'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">2</span>] = x; }
+});
+
+
+
 Vec3.prototype = {</pre></div></div>
             
         </li>
@@ -1282,6 +1389,26 @@ a scalar, returns a new vector equal to the vector divided with that scalar</p>
 		<span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = y || <span class="hljs-number">0</span>;
 	}
 }
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec2.prototype, <span class="hljs-string">'x'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec2.prototype, <span class="hljs-string">'y'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec2.prototype, <span class="hljs-string">'s'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">0</span>] = x; }
+});
+
+<span class="hljs-built_in">Object</span>.defineProperty(Vec2.prototype, <span class="hljs-string">'t'</span>, {
+   	get: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>]; },
+   	set: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span> <span class="hljs-keyword">this</span>.data[<span class="hljs-number">1</span>] = x; }
+});
 
 Vec2.prototype = {</pre></div></div>
             
