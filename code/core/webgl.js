@@ -17,8 +17,9 @@ GLError.prototype = Error.prototype;
 // Mat4x4
 // ----------
 // Constructs a 4 x 4 matrix with common math operations
-function Mat4x4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) {
-	this.data = new Float32Array(16);
+function Mat4x4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, type) {
+	this.type = type || Float32Array;
+	this.data = new this.type(16);
 	if(a instanceof Mat4x4) this.data.set(a.data);
 	else if(a instanceof Array) this.data.set(a);
 	else this.data.set([a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p]);
@@ -150,8 +151,9 @@ Mat4x4.prototype = {
 // Vec4
 // ----------
 // Constructs a four element vector class with common math operations
-function Vec4(x, y, z, w) {
-	this.data = new Float32Array(4);
+function Vec4(x, y, z, w, type) {
+	this.type = type || Float32Array;
+	this.data = new this.type(4);
 	if(x instanceof Vec4) {
 		this.data.set(x.data);
 	} else if(x instanceof Array || x instanceof Float32Array) {
@@ -163,6 +165,66 @@ function Vec4(x, y, z, w) {
 		this.data[3] = w || 0;
 	}
 }
+
+Object.defineProperty(Vec4.prototype, 'x', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'y', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'z', {
+   	get: function() { return this.data[2]; },
+   	set: function(x) { this.data[2] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'w', {
+   	get: function() { return this.data[3]; },
+   	set: function(x) { this.data[3] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'r', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'g', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'b', {
+   	get: function() { return this.data[2]; },
+   	set: function(x) { this.data[2] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'a', {
+   	get: function() { return this.data[3]; },
+   	set: function(x) { this.data[3] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 's', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 't', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'p', {
+   	get: function() { return this.data[2]; },
+   	set: function(x) { this.data[2] = x; }
+});
+
+Object.defineProperty(Vec4.prototype, 'q', {
+   	get: function() { return this.data[3]; },
+   	set: function(x) { this.data[3] = x; }
+});
 
 Vec4.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
@@ -285,8 +347,9 @@ Vec4.prototype = {
 // Vec3
 // ----------
 // Constructs a three element vector class with common math operations
-function Vec3(x, y, z) {
-	this.data = new Float32Array(3);
+function Vec3(x, y, z, type) {
+	this.type = type || Float32Array;
+	this.data = new this.type(3);
 	if(x instanceof Vec3) {
 		this.data.set(x.data);
 	} else if(x instanceof Array || x instanceof Float32Array) {
@@ -297,6 +360,53 @@ function Vec3(x, y, z) {
 		this.data[2] = z || 0;
 	}
 }
+
+Object.defineProperty(Vec3.prototype, 'x', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 'y', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 'z', {
+   	get: function() { return this.data[2]; },
+   	set: function(x) { this.data[2] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 'r', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 'g', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 'b', {
+   	get: function() { return this.data[2]; },
+   	set: function(x) { this.data[2] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 's', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 't', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec3.prototype, 'q', {
+   	get: function() { return this.data[2]; },
+   	set: function(x) { this.data[2] = x; }
+});
+
+
 
 Vec3.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
@@ -399,8 +509,9 @@ Vec3.prototype = {
 // Vec2
 // ----------
 // Constructs a three element vector class with common math operations
-function Vec2(x, y) {
-	this.data = new Float32Array(2);
+function Vec2(x, y, type) {
+	this.type = type || Float32Array;
+	this.data = new this.type(2);
 	if(x instanceof Vec2) {
 		this.data.set(x.data);
 	} else if(x instanceof Array || x instanceof Float32Array) {
@@ -410,6 +521,26 @@ function Vec2(x, y) {
 		this.data[1] = y || 0;
 	}
 }
+
+Object.defineProperty(Vec2.prototype, 'x', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec2.prototype, 'y', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
+
+Object.defineProperty(Vec2.prototype, 's', {
+   	get: function() { return this.data[0]; },
+   	set: function(x) { this.data[0] = x; }
+});
+
+Object.defineProperty(Vec2.prototype, 't', {
+   	get: function() { return this.data[1]; },
+   	set: function(x) { this.data[1] = x; }
+});
 
 Vec2.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
@@ -500,6 +631,123 @@ Vec2.prototype = {
 	},
 }
 
+
+// Vec
+// ----------
+// Constructs an n element vector class with common math operations
+function Vec(x, type) {
+	if(x instanceof Vec) {
+		this.type = type || Float32Array;
+		this.data = new this.type(x.length);
+		this.data.set(x.data);
+	} else if(x instanceof Array || x instanceof Float32Array) {
+		this.type = type || Float32Array;
+		this.data = new this.type(x.length);
+		this.data.set(x);
+	}  else {
+		this.type = type || Float32Array;
+		this.data = new this.type(x);
+	}
+}
+
+Object.defineProperty(Vec.prototype, 'length', {
+   	get: function() { return this.data.length; },
+});
+
+Vec.prototype = {
+	// Applies the input function to each element of the vector and returns a reference to this vector
+	map : function(func) {
+		for (var i = this.data.length - 1; i >= 0; i--) this.data[i] = func(this.data[i], i);
+		return this;
+	},
+	reduce : function(func, initial) {
+		var previous_value = initial || 0;
+		for (var i = this.data.length - 1; i >= 0; i--) previous_value = func(previous_value, this.data[i], i);
+	},
+	// If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
+	addeq : function(v) {
+		if (v instanceof Vec) this.map(function(x, i) { return this.data[i] + v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] + v; } );
+		return this;
+	},
+	// If v is a vector, returns a new vector equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector summed with that scalar
+	add : function(v) {
+		return new Vec(this).addeq(v);
+	},  
+	// If v is a vector, returns a reference to this vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus with that scalar
+	subeq : function(v) {
+		if (v instanceof Vec) this.map(function(x, i) { return this.data[i] - v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] - v; } );
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector minus that scalar
+	sub : function(v) {
+		return new Vec(this).subeq(v);
+	},
+	// Returns a new vector equal to the dot product of this vector and v.
+	dot : function(v) {
+		return this.mul(v).reduce(function(previous, current, i) { return previous + current; }, 0);
+	},
+	// If v is a vector, returns a reference to this vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
+	muleq : function(v) {
+		if (v instanceof Vec) this.map(function(x, i) { return this.data[i] * v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] * v; } );
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector multiplied with that scalar
+	mul : function(v) {
+		return new Vec(this).muleq(v);
+	},
+	// If v is a vector, returns a reference to this vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
+	diveq : function(v) {
+		if (v instanceof Vec) this.map(function(x, i) { return this.data[i] / v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] / v; } );
+		return this;
+	}, 
+	// If v is a vector, returns a new vector equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new vector equal to the vector divided with that scalar
+	div : function(v) {
+		return new Vec(this).diveq(v);
+	},
+	// Returns a reference to this vector equal to the normalized (unit length) of this vector
+	normalize : function() {
+		return this.diveq(this.magnitude());
+	},
+	// Returns a new vector equal to the normalized (unit length) of this vector
+	normalized : function() {
+		return new Vec(this).normalize();
+	},
+	// Returns the square root of the squared sum of elements of this vector (Euclidean length)
+	magnitude : function() {
+		return Math.sqrt(this.magnitude2());
+	},
+	// Returns the squared sum of elements of this vector (Euclidean length squared)
+	magnitude2 : function() {
+		return this.reduce(function(previous, current, i) { return previous + current * current; }, 0);
+	},
+	// Returns the Euclidean distance between this vector and the vector v
+	distance : function(v) {
+		return Math.sqrt(this.distance2(v));
+	},
+	// Returns the Euclidean distance squared between this vector and the vector v
+	distance2 : function(v) {
+		return this.reduce(function(previous, current, i) { return previous + (current - v[i]) * (current - v[i]); }, 0);
+	},
+	// Returns true of the elements of this vector and v are equal
+	equals : function(v) {
+		return this.map(function(x, i) { if(x != m.data[i]) return false; }) || true;
+	},
+}
+
+
+
 // Quaternion
 // ----------
 function Quaternion(x, y, z, w) {
@@ -587,6 +835,7 @@ function GL(canvas) {
 	this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 }
 
+
 GL.prototype = {
 	// Sets the draw loop function to repeat at the specified interval in milliseconds
 	drawLoop : function(func, interval) {
@@ -597,6 +846,7 @@ GL.prototype = {
 	resize : function(dim) {
 		this.canvas.width = dim.data[0];
 		this.canvas.height = dim.data[1];
+		this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
 	},
 	// Loads (compile, attach and links) a vertex and fragment shader from scripts with the given ids.  Returns the shader program.
 	loadShaderFromScripts :  function(vertex_id, fragment_id) {
@@ -634,16 +884,128 @@ GL.prototype = {
 
 		var shader = {
 			program : shader_program,
+			gl : this.gl,
 			bind : function() {
-				this.gl.useProgram(program);
+				this.gl.useProgram(this.program);
+			}, 
+
+			bindUniform : function(name, value) {
+				var uniformLocation = this.gl.getUniformLocation(program, name);
+				if (value instanceof Mat4x4)
+					this.gl.uniformMatrix4fv(false, value.data);
+				else if (value instanceof Vec4)
+					throw {name : "NotImplementedError", message : "todo"};
+				else
+					throw {name : "NotImplementedError", message : "todo"};
 			}
 		}
 
 		return shader;
 	},
 	// Binds a uniform value to the current shader, infers the value type
-	bindUniform : function(name, value) {
-		throw {name : "NotImplementedError", message : "todo"};
-	}
 
+
+}
+
+// Camera
+// ----------
+// Constructs a camera 
+function Camera(gl) {
+	this.mat = new Mat4x4();
+}
+
+OrthoCamera.prototype = new Camera();
+OrthoCamera.prototype.constructor = OrthoCamera;
+
+function OrthoCamera(gl, left, right, bottom, top, near, far) {
+	Camera.call(this, gl);
+
+	left = left || -1;
+	right = right || -1;
+	bottom = bottom || -1;
+	top = top || -1;
+	near = near || -1;
+	far = far || -1;
+
+	this.mat.data.set([
+		2 / (right - left), 0, 0, -(right + left) / (right - left),
+		0, 2, 0, (-top + bottom) / (top - bottom),
+		0, 0, -2 / (far - near), -(far + near) / (far - near),
+		0, 0, 0, 1
+		]);
+}
+
+PerspectiveCamera.prototype = new Camera();
+PerspectiveCamera.prototype.constructor = PerspectiveCamera;
+
+function PerspectiveCamera(gl) {
+	throw {name : "NotImplementedError", message : "todo"};
+}
+
+
+
+// Primitive Factory
+// ----------
+// Defines some commonly used primitives
+function PrimitiveFactory() {}
+PrimitiveFactory.Quad = function() {
+	return new (function() {
+			this.vertices = {
+				id : -1, 
+				attribute : "vtx_pos",
+				vec : new Vec([   
+					1.0,  1.0,  0.0,
+					-1.0, 1.0,  0.0,
+					1.0,  -1.0, 0.0,
+					-1.0, -1.0, 0.0], Float32Array),
+				compile : function(ctx, draw_mode) {
+					draw_mode = draw_mode || ctx.gl.STATIC_DRAW;
+					if(this.id < 0) this.id = ctx.gl.createBuffer();
+					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, this.id);
+					ctx.gl.bufferData(ctx.gl.ARRAY_BUFFER, this.vec.data, draw_mode);
+				},
+				bind : function(ctx, program) {
+					if(this.id < 0) this.compile(ctx);
+					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, this.id);
+					var attribute_location = ctx.gl.getAttribLocation(program, this.attribute);
+					ctx.gl.enableVertexAttribArray(attribute_location);
+					ctx.gl.vertexAttribPointer(attribute_location, 
+						3, ctx.gl.FLOAT, false, 0, 0);
+				}
+			},
+			this.indices = {
+				id : -1,
+				vec: new Vec([0, 1, 2, 0, 2, 3], Uint16Array),
+				compile : function(ctx, draw_mode) {
+					draw_mode = draw_mode || ctx.gl.STATIC_DRAW;
+					if(this.id < 0) this.id = ctx.gl.createBuffer();
+					ctx.gl.bindBuffer(ctx.gl.ELEMENT_ARRAY_BUFFER, this.id);
+					ctx.gl.bufferData(ctx.gl.ELEMENT_ARRAY_BUFFER, this.vec.data, draw_mode);
+				},
+				bind : function(ctx) {
+					if(this.id < 0) this.compile(ctx);
+					ctx.gl.bindBuffer(ctx.gl.ELEMENT_ARRAY_BUFFER, this.id);
+				}
+			},
+			// texcoords : new Vec([0, 0,
+			// 					 0, 1,
+			// 					 1, 1,
+			// 					 0, 1], Float32Array),
+			// normals : new Vec([0, 0, 1,
+			// 				   0, 0, 1,
+			// 				   0, 0, 1,
+			// 				   0, 0, 1], Float32Array),
+
+			this.compile = function(ctx, draw_mode) {
+				this.vertices.compile(ctx, draw_mode);
+				// this.indices.compile(ctx, draw_mode);
+			},
+			this.draw = function(ctx, program) {
+				this.vertices.bind(ctx, program);
+				// this.indices.bind(ctx, program);
+				// ctx.gl.drawElements(ctx.gl.TRIANGLES, this.indices.vec.length / 3, ctx.gl.UNSIGNED_SHORT, 0);
+				ctx.gl.drawArrays(ctx.gl.TRIANGLE_STRIP, 0, 4);
+			}
+		});
+	
 }
