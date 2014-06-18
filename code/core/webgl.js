@@ -650,10 +650,6 @@ function Vec(x, type) {
 	}
 }
 
-Object.defineProperty(Vec.prototype, 'length', {
-   	get: function() { return this.data.length; },
-});
-
 Vec.prototype = {
 	// Applies the input function to each element of the vector and returns a reference to this vector
 	map : function(func) {
@@ -663,6 +659,7 @@ Vec.prototype = {
 	reduce : function(func, initial) {
 		var previous_value = initial || 0;
 		for (var i = this.data.length - 1; i >= 0; i--) previous_value = func(previous_value, this.data[i], i);
+		return previous_value;
 	},
 	// If v is a vector, returns a reference to this vector equal to an element by element sum of the two vectors.  Else if v is 
 	// a scalar, returns a new vector equal to the vector summed with that scalar
@@ -696,7 +693,7 @@ Vec.prototype = {
 	// a scalar, returns a new vector equal to the vector multiplied with that scalar
 	muleq : function(v) {
 		if (v instanceof Vec) this.map(function(x, i) { return this.data[i] * v.data[i]; } );
-		else this.map(function(x, i) { return this.data[i] * v; } );
+		else this.map(function(x, i) { return x * v; } );
 		return this;
 	}, 
 	// If v is a vector, returns a new vector equal to an element by element multiplication of the two vectors.  Else if v is 
@@ -746,7 +743,9 @@ Vec.prototype = {
 	},
 }
 
-
+Object.defineProperty(Vec.prototype, 'length', {
+   	get: function() { return this.data.length; },
+});
 
 // Quaternion
 // ----------
@@ -810,6 +809,100 @@ Quaternion.prototype.rotatedVector = function(v) {
 	return (this.mul(new Quaternion(v.data.subarray(0, 3)))).mul(this.conjugate()).complex();
 }
 
+// Mat
+// ----------
+// General ND matrix class
+function Mat(dims, type) {
+	if(dims instanceof Mat) {
+		throw new NotImplementedError("not implemented");
+	} else if(dims instanceof Array) {
+		this.dims = dims;
+		this.type = type;
+		this.data = new this.type(
+			new Vec(dims, Float32Array).reduce(
+				function(previous, current, i) {
+					return previous * current;
+				}, 1));
+	}
+}
+
+Mat.prototype = {
+	// Computes the svd decomposition of this matrix
+	svd : function() {
+		throw new NotImplementedError("not implemented");
+	},
+	// Computes and returns a reference to this matrix equal to the inverse
+	inverted : function() {
+		throw new NotImplementedError("not implemented");
+	},
+	// Computes and returns a new matrix equal to the inverse
+	invert : function() {
+		return new Matrix(this).inverted();
+	},
+	// Applies the input function to each element of the matrix and returns a reference to this matrix
+	map : function(func) {
+		for (var i = this.data.length - 1; i >= 0; i--) this.data[i] = func(this.data[i], i);
+		return this;
+	},
+	reduce : function(func, initial) {
+		var previous_value = initial || 0;
+		for (var i = this.data.length - 1; i >= 0; i--) previous_value = func(previous_value, this.data[i], i);
+	},
+	// If v is a matrix, returns a reference to this matrix equal to an element by element sum of the two matrix.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix summed with that scalar
+	addeq : function(v) {
+		if (v instanceof Mat) this.map(function(x, i) { return this.data[i] + v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] + v; } );
+		return this;
+	},
+	// If v is a matrix, returns a new matrix equal to an element by element sum of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix summed with that scalar
+	add : function(v) {
+		return new Mat(this).addeq(v);
+	},  
+	// If v is a matrix, returns a reference to this matrix equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix minus with that scalar
+	subeq : function(v) {
+		if (v instanceof Mat) this.map(function(x, i) { return this.data[i] - v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] - v; } );
+		return this;
+	}, 
+	// If v is a matrix, returns a new matrix equal to an element by element difference of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix minus that scalar
+	sub : function(v) {
+		return new Mat(this).subeq(v);
+	},
+	
+	// If v is a matrix, returns a reference to this matrix equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix multiplied with that scalar
+	muleq : function(v) {
+		if (v instanceof Mat) throw new NotImplementedError("not implemented");
+		else this.map(function(x, i) { return this.data[i] / v; } );
+		return this;
+	}, 
+	// If v is a matrix, returns a new matrix equal to an element by element multiplication of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix multiplied with that scalar
+	mul : function(v) {
+		return new Mat(this).muleq(v);
+	},
+	// If v is a matrix, returns a reference to this matrix equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix divided with that scalar
+	diveq : function(v) {
+		if (v instanceof Mat) this.map(function(x, i) { return this.data[i] / v.data[i]; } );
+		else this.map(function(x, i) { return this.data[i] / v; } );
+		return this;
+	}, 
+	// If v is a matrix, returns a new matrix equal to an element by element dvision of the two vectors.  Else if v is 
+	// a scalar, returns a new matrix equal to the matrix divided with that scalar
+	div : function(v) {
+		return new Mat(this).diveq(v);
+	},
+		// Returns true of the elements of this matrix and v are equal
+	equals : function(v) {
+		return this.map(function(x, i) { if(x != m.data[i]) return false; }) || true;
+	},
+}
+
 // gl
 // ----------
 // Constructs a GL instance responsible for managing a context associated with a canvas
@@ -828,9 +921,10 @@ function GL(canvas) {
 		throw {name : "GLError", message : "Error initializing GL context."};
 	}
 
-	this.gl.clearColor(1.0, 1.0, 1.0, 1.0);  	// Clear to black, fully opaque
+	this.gl.clearColor(0.0, 0.0, 0.0, 1.0);  	// Clear to black, fully opaque
     this.gl.clearDepth(1.0);                 	// Clear everything
-    this.gl.enable(this.gl.DEPTH_TEST);           // Enable depth testing
+    this.gl.disable(this.gl.DEPTH_TEST);           // Enable depth testing
+    this.gl.disable(this.gl.CULL_FACE)
     this.gl.depthFunc(this.gl.LEQUAL);            // Near things obscure far things
 	this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 }
@@ -839,8 +933,10 @@ function GL(canvas) {
 GL.prototype = {
 	// Sets the draw loop function to repeat at the specified interval in milliseconds
 	drawLoop : function(func, interval) {
-		interval = interval || 30;
-		setInterval(func(), interval);
+
+		this.drawinterval = setInterval(function() {
+			func();
+		},  interval || 30);
 	},
 	// Resizes the canvas to the specified dimenion (vec2)
 	resize : function(dim) {
@@ -954,8 +1050,8 @@ PrimitiveFactory.Quad = function() {
 				id : -1, 
 				attribute : "vtx_pos",
 				vec : new Vec([   
-					1.0,  1.0,  0.0,
-					-1.0, 1.0,  0.0,
+					-1.0,  1.0,  0.0,
+					1.0, 1.0,  0.0,
 					1.0,  -1.0, 0.0,
 					-1.0, -1.0, 0.0], Float32Array),
 				compile : function(ctx, draw_mode) {
@@ -969,42 +1065,57 @@ PrimitiveFactory.Quad = function() {
 					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, this.id);
 					var attribute_location = ctx.gl.getAttribLocation(program, this.attribute);
 					ctx.gl.enableVertexAttribArray(attribute_location);
-					ctx.gl.vertexAttribPointer(attribute_location, 
-						3, ctx.gl.FLOAT, false, 0, 0);
+					ctx.gl.vertexAttribPointer(attribute_location, 3, ctx.gl.FLOAT, false, 0, 0);
 				}
 			},
 			this.indices = {
 				id : -1,
-				vec: new Vec([0, 1, 2, 0, 2, 3], Uint16Array),
+				vec: new Vec([0, 1, 2, 3, 2, 0], Uint16Array),
 				compile : function(ctx, draw_mode) {
 					draw_mode = draw_mode || ctx.gl.STATIC_DRAW;
 					if(this.id < 0) this.id = ctx.gl.createBuffer();
 					ctx.gl.bindBuffer(ctx.gl.ELEMENT_ARRAY_BUFFER, this.id);
 					ctx.gl.bufferData(ctx.gl.ELEMENT_ARRAY_BUFFER, this.vec.data, draw_mode);
 				},
-				bind : function(ctx) {
+				bind : function(ctx, program) {
 					if(this.id < 0) this.compile(ctx);
 					ctx.gl.bindBuffer(ctx.gl.ELEMENT_ARRAY_BUFFER, this.id);
 				}
 			},
-			// texcoords : new Vec([0, 0,
-			// 					 0, 1,
-			// 					 1, 1,
-			// 					 0, 1], Float32Array),
-			// normals : new Vec([0, 0, 1,
-			// 				   0, 0, 1,
-			// 				   0, 0, 1,
-			// 				   0, 0, 1], Float32Array),
-
+			this.texcoords = {
+				id : -1,
+				attribute : "tex_pos",
+				vec : new Vec([0.0, 0.0,
+								 1.0, 0.0,
+								 1.0, 1.0,
+								 0.0, 1.0], Float32Array),
+				compile : function(ctx, draw_mode) {
+					draw_mode = draw_mode || ctx.gl.STATIC_DRAW;
+					if(this.id < 0) this.id = ctx.gl.createBuffer();
+					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, this.id);
+					ctx.gl.bufferData(ctx.gl.ARRAY_BUFFER, this.vec.data, draw_mode);
+				},
+				bind : function(ctx, program) {
+					if(this.id < 0) this.compile(ctx);
+					ctx.gl.bindBuffer(ctx.gl.ARRAY_BUFFER, this.id);
+					var attribute_location = ctx.gl.getAttribLocation(program, this.attribute);
+					ctx.gl.enableVertexAttribArray(attribute_location);
+					ctx.gl.vertexAttribPointer(attribute_location, 2, ctx.gl.FLOAT, false, 0, 0);
+				}
+			},
 			this.compile = function(ctx, draw_mode) {
 				this.vertices.compile(ctx, draw_mode);
-				// this.indices.compile(ctx, draw_mode);
+				this.indices.compile(ctx, draw_mode);
 			},
-			this.draw = function(ctx, program) {
-				this.vertices.bind(ctx, program);
-				// this.indices.bind(ctx, program);
-				// ctx.gl.drawElements(ctx.gl.TRIANGLES, this.indices.vec.length / 3, ctx.gl.UNSIGNED_SHORT, 0);
-				ctx.gl.drawArrays(ctx.gl.TRIANGLE_STRIP, 0, 4);
+			this.draw = function(ctx, shader) {
+
+				shader.bind();
+				this.vertices.bind(ctx, shader.program);
+				this.texcoords.bind(ctx, shader.program);
+				this.indices.bind(ctx, shader.program);
+				
+				
+				ctx.gl.drawElements(ctx.gl.TRIANGLES, this.indices.vec.length, ctx.gl.UNSIGNED_SHORT, 0);
 			}
 		});
 	

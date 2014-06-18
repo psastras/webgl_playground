@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"previo",
+				"previous_value"
+			],
+			[
+				"instance",
+				"instanceof"
+			],
+			[
+				"vertex",
+				"vertex_shader"
+			],
+			[
+				"frag",
+				"fragment_shader"
+			],
+			[
+				"vert",
+				"vertex_shader"
+			],
+			[
 				"resi",
 				"resize(InputArray src, OutputArray dst, Size dsize)	void"
 			],
@@ -494,68 +514,115 @@
 			[
 				"un",
 				"unique_futures	std::map<uint32_t, std::vector<uint32_t> >"
-			],
-			[
-				"nu",
-				"num_components	uint64_t"
-			],
-			[
-				"trans",
-				"transitionMatrix	std::vector<uint32_t>"
-			],
-			[
-				"tran",
-				"transitionMatrix	std::vector<uint32_t>"
-			],
-			[
-				"max",
-				"maxIndex	uint32_t"
-			],
-			[
-				"transition",
-				"transitionMatrix	std::vector< std::vector<uint32_t> >"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "code/core/canvas.js",
-			"settings":
-			{
-				"buffer_size": 441,
-				"line_ending": "Unix",
-				"name": "var gl; // A global variable for the WebGL context"
-			}
-		},
-		{
-			"contents": "<html>\n<head>\n<script type=\"text/javascript\"></script>\n</head>\n<body onload=\"start()\">\n  <canvas id=\"glcanvas\" width=\"640\" height=\"480\">\n    Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.\n  </canvas>\n</body>\n</html>",
 			"file": "code/experiments/simple/index.html",
-			"file_size": 256,
-			"file_write_time": 130462142015720972,
 			"settings":
 			{
-				"buffer_size": 254,
-				"line_ending": "Unix",
+				"buffer_size": 1079,
+				"line_ending": "Windows",
 				"name": "<body onload=\"start()\">"
 			}
 		},
 		{
-			"file": "code/3rdparty/jslog.js",
+			"file": "code/core/webgl.js",
 			"settings":
 			{
-				"buffer_size": 8598,
-				"line_ending": "Unix",
-				"name": "LOG JavaScript Logging Library"
+				"buffer_size": 50054,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/psast_000/Documents/README.md",
+			"settings":
+			{
+				"buffer_size": 1796,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "CMAKE_MINIMUM_REQUIRED(VERSION 2.6)\n\nPROJECT(knewton)\nSET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib CACHE INTERNAL \"Lib output dir\")\nSET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin CACHE INTERNAL \"Binary output dir\")\n\n# Default to release build\nIF (NOT CMAKE_BUILD_TYPE)\n  SET(CMAKE_BUILD_TYPE  \"Release\" CACHE STRING \"Type of build (Debug Release RelWithDebInfo MinSizeRel)\" FORCE) \nENDIF ()\n\nIF (APPLE)\n  SET(CMAKE_OSX_ARCHITECTURES \"x86_64\" CACHE STRING \"Build arch for OS X\" FORCE)\nENDIF (APPLE)\n\nSET(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS_INIT} ${WARNING_FLAGS} ${ARCHITECTURE_FLAGS} -g\")\n\n# Enable c++11x\nIF(\"${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"Clang\")\n	SET(CMAKE_EXE_LINKER_FLAGS \"${CMAKE_EXE_LINKER_FLAGS} -stdlib=libstdc++\")\n	SET(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -stdlib=libstdc++\")\nELSEIF(\"${CMAKE_CXX_COMPILER_ID}\" MATCHES \"GNU\")\n	EXECUTE_PROCESS(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)\n	IF(GCC_VERSION VERSION_LESS 4.2)\n		SET(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -fpermissive\")\n	ELSEIF(GCC_VERSION VERSION_LESS 4.7)\n		SET(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++0x -fpermissive\")\n	ELSE()\n		SET(CMAKE_CXX_FLAGS \"${CMAKE_CXX_FLAGS} -std=c++11 -fpermissive\")\n	ENDIF()\nENDIF()\n\nADD_SUBDIRECTORY(src)\n",
+			"file": "/C/Users/psast_000/AppData/Local/Temp/Temp1_knewton (1).zip/knewton/CMakeLists.txt",
+			"file_size": 1247,
+			"file_write_time": 130469133582343602,
+			"settings":
+			{
+				"buffer_size": 1247,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/psast_000/Downloads/knewton/src/main.cxx",
+			"settings":
+			{
+				"buffer_size": 576,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/psast_000/Downloads/knewton/src/paircounter.cxx",
+			"settings":
+			{
+				"buffer_size": 2872,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/psast_000/Downloads/BijiPlates-v1.8.9/BijiPlates/BijiPlates.lua",
+			"settings":
+			{
+				"buffer_size": 160543,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "import urllib2\nfrom BeautifulSoup import BeautifulSoup\npage = BeautifulSoup(urllib2.urlopen(\"http://www.url.com\"))\npage.findAll('img')",
+			"settings":
+			{
+				"buffer_size": 134,
+				"line_ending": "Windows",
+				"name": "import urllib2"
+			}
+		},
+		{
+			"file": "/C/Users/psast_000/Downloads/BijiPlates.lua",
+			"settings":
+			{
+				"buffer_size": 163243,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/psast_000/Downloads/knewton/src/paircounter.hpp",
+			"settings":
+			{
+				"buffer_size": 1974,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 137,
+				"line_ending": "Windows"
 			}
 		}
 	],
 	"build_system": "Packages/User/pcam.sublime-build",
 	"command_palette":
 	{
-		"height": 378.0,
+		"height": 58.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"bro",
 				"SFTP: Browse Server…"
@@ -575,10 +642,6 @@
 			[
 				"remove ",
 				"Package Control: Remove Package"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"repo",
@@ -657,16 +720,11 @@
 				"Package Control: Upgrade Package"
 			]
 		],
-		"width": 457.0
+		"width": 416.0
 	},
 	"console":
 	{
-		"height": 133.0,
-		"history":
-		[
-			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
-			"sublime.packages_path()"
-		]
+		"height": 133.0
 	},
 	"distraction_free":
 	{
@@ -679,6 +737,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/psast_000/Documents/GitHub/webgl_playground/code/core/canvas.js",
+		"/C/Users/psast_000/Documents/GitHub/webgl_playground/code/3rdparty/jslog.js",
 		"/home/psastras/depth.cxx",
 		"/home/psastras/test.cpp",
 		"/home/psastras/Desktop/graph.cxx",
@@ -804,9 +864,7 @@
 		"/home/psastras/paulcam/memex/modules/tools/clusterSegment.cxx",
 		"/home/psastras/Desktop/code/function[s] = img_path_remote(fid, frames, clips)",
 		"/home/psastras/Desktop/code/read_binary_vector32f.m",
-		"/home/psastras/Desktop/code/read_binary_vector32u.m",
-		"/home/psastras/Desktop/code/function preview_frame_ids_2.m",
-		"/home/psastras/paulcam/memex/modules/tools/test.seq"
+		"/home/psastras/Desktop/code/read_binary_vector32u.m"
 	],
 	"find":
 	{
@@ -824,6 +882,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"arUnit2Nameplate",
+			"DrawNameplate",
+			"unit",
+			"DrawNameplate",
+			"OnFrame",
+			"function Bijiplates:show",
+			"show(",
+			"draw",
+			"for",
+			"while",
+			"map",
+			"matrix",
+			"mat4x4",
+			"vec4",
+			"vec3",
+			"vec2",
+			"\\t",
+			"*",
+			"-",
+			"+",
+			"m.data\\[\\d*\\]",
 			"figures/",
 			"the dat",
 			"indivi",
@@ -930,28 +1009,7 @@
 			"graph_",
 			"connected_compon",
 			"cluster",
-			"frame_id",
-			"int64_t",
-			"id_fra",
-			"auto",
-			"cout",
-			"add_tem",
-			"uint64_t",
-			"id_frame",
-			"it",
-			"matlab",
-			"gaussianKernel_1D",
-			"detect_",
-			"start_c",
-			"clusters[frame",
-			"-128",
-			"-129",
-			"write_metis",
-			"nodes",
-			"add_edge",
-			"read(",
-			"num_verts()",
-			"num_verts"
+			"frame_id"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -959,6 +1017,15 @@
 		"regex": false,
 		"replace_history":
 		[
+			"Mat4x4",
+			"Vec4",
+			"Vec3",
+			"Vec2",
+			"",
+			"/",
+			"*",
+			"-",
+			"m",
 			"\\figureprefix/",
 			"\\figureprefix",
 			"large",
@@ -1050,99 +1117,304 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 8,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "code/core/canvas.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 441,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								219,
-								219
-							]
-						],
-						"settings":
-						{
-							"auto_name": "var gl; // A global variable for the WebGL context",
-							"incomplete_sync": null,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "code/experiments/simple/index.html",
-					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 254,
+						"buffer_size": 1079,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								199,
-								199
+								778,
+								778
 							]
 						],
 						"settings":
 						{
 							"auto_name": "<body onload=\"start()\">",
 							"incomplete_sync": null,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "code/3rdparty/jslog.js",
-					"semi_transient": false,
+					"buffer": 1,
+					"file": "code/core/webgl.js",
 					"settings":
 					{
-						"buffer_size": 8598,
+						"buffer_size": 50054,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8394,
-								8394
+								43006,
+								43006
 							]
 						],
 						"settings":
 						{
-							"auto_name": "LOG JavaScript Logging Library",
-							"incomplete_sync": null,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5308.0,
+						"translation.y": 15655.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/psast_000/Documents/README.md",
+					"settings":
+					{
+						"buffer_size": 1796,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								405,
+								405
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/psast_000/AppData/Local/Temp/Temp1_knewton (1).zip/knewton/CMakeLists.txt",
+					"settings":
+					{
+						"buffer_size": 1247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1130,
+								1130
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/psast_000/Downloads/knewton/src/main.cxx",
+					"settings":
+					{
+						"buffer_size": 576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/psast_000/Downloads/knewton/src/paircounter.cxx",
+					"settings":
+					{
+						"buffer_size": 2872,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2849,
+								2849
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1566.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/C/Users/psast_000/Downloads/BijiPlates-v1.8.9/BijiPlates/BijiPlates.lua",
+					"settings":
+					{
+						"buffer_size": 160543,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								148917,
+								148917
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 63226.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"settings":
+					{
+						"buffer_size": 134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								134,
+								134
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import urllib2",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/Users/psast_000/Downloads/BijiPlates.lua",
+					"settings":
+					{
+						"buffer_size": 163243,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								55351,
+								55351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 21114.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/psast_000/Downloads/knewton/src/paircounter.hpp",
+					"settings":
+					{
+						"buffer_size": 1974,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								239,
+								239
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 486.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 137,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								137,
+								137
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"type": "text"
 				}
 			]
@@ -1195,7 +1467,6 @@
 	{
 		"height": 100.0
 	},
-	"project": "webgl_playground.sublime-project",
 	"replace":
 	{
 		"height": 74.0
@@ -1729,24 +2000,10 @@
 		],
 		"width": 380.0
 	},
-	"select_symbol":
-	{
-		"height": 392.0,
-		"selected_items":
-		[
-		],
-		"width": 392.0
-	},
-	"settings":
-	{
-	},
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 251.0,
-	"status_bar_visible": true,
-	"template_settings":
-	{
-	}
+	"status_bar_visible": true
 }
